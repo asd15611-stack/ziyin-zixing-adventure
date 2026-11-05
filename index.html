@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="zh-Hant"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/><meta content="#16243e" name="theme-color"/><title>字音字形大冒險 V4.2｜品質驗收測試版</title><style>
+<html lang="zh-Hant"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/><meta content="#16243e" name="theme-color"/><title>字音字形大冒險 V4.8｜競賽進階易混淆字測試版</title><style>
 :root{font-family:system-ui,'Noto Sans TC',sans-serif;color:#f6f8ff;background:#10182b}*{box-sizing:border-box}body{margin:0;background:linear-gradient(160deg,#10182b,#253d61);min-height:100vh}button,select,input{font:inherit}.writing-board{width:100%;height:270px;display:block;background:#fff;border:2px solid #8da4c8;border-radius:14px;touch-action:none;cursor:crosshair}.write-tools{display:flex;gap:8px;margin-top:10px}.write-tools button{flex:1;background:#e4ecfa;color:#18314f}.write-note{font-size:13px;color:#435b79;margin:8px 0} .type-answer{width:100%;font-size:23px;padding:14px;border:2px solid #809bc4;border-radius:12px;background:#fff;color:#14243d;min-height:58px} .type-answer:focus{outline:3px solid #f2bd4b} .zhuyin-pad{display:grid;grid-template-columns:repeat(6,1fr);gap:5px;margin-top:10px}.zhuyin-pad button{padding:9px 2px;background:#e3ebfb;color:#1b3053;font-size:18px;border-radius:9px}.zhuyin-pad .wide{grid-column:span 3;font-size:14px}.entry-tip{font-size:13px;color:#546784;margin:8px 0}button{cursor:pointer;border:0;border-radius:14px;padding:13px 16px;font-weight:800;background:#f5c65d;color:#20263b}button:disabled{opacity:.45;cursor:not-allowed}.wrap{max-width:600px;margin:auto;padding:16px 14px 40px}.hero{padding:18px;background:linear-gradient(120deg,#354e80,#223653);border:2px solid #7284b2;border-radius:20px;text-align:center}.hero h1{margin:4px 0;font-size:27px}.sub{color:#d6e4fc;font-size:13px}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin:14px 0}.stat{background:#253551;border:1px solid #5b7299;border-radius:12px;text-align:center;padding:10px 3px;font-size:12px}.stat b{display:block;font-size:17px;color:#ffdf86}.panel{background:#f8f9ff;color:#18263c;border-radius:18px;padding:18px;margin:13px 0;box-shadow:0 7px 20px #0003}.panel h2{margin:0 0 12px;font-size:21px}.levels{display:grid;grid-template-columns:1fr 1fr;gap:10px}.level{background:#e7edfc;color:#18263c;border:2px solid #c6d4ed;text-align:left;min-height:82px}.level.active{border-color:#365cb3;background:#d8e8ff}.level:disabled{background:#e4e5e9}.mode{display:flex;gap:8px;flex-wrap:wrap}.mode button{background:#e7ecf6;color:#223a5e;flex:1;min-width:90px}.mode button.active{background:#3155a4;color:white}.primary{background:#f2bd4b;width:100%;margin-top:12px}.secondary{background:#dce7f9;color:#193558}.answer{width:100%;display:flex;justify-content:space-between;align-items:center;margin:9px 0;text-align:left;background:#e9effa;color:#1b2b44;border:2px solid #cbd9ed;min-height:57px}.answer.correct{background:#d5f5dc;border-color:#279747}.answer.wrong{background:#ffe0e0;border-color:#d34b4b}.progress{height:12px;border-radius:99px;background:#cbd6e8;overflow:hidden;margin:12px 0}.bar{height:100%;background:#3b8b63;transition:width .2s}.enemy{font-size:54px;text-align:center;line-height:1.4}.question{font-size:23px;font-weight:900;line-height:1.5;text-align:center;margin:15px 0}.hint{font-size:14px;color:#50627c;line-height:1.6}.result{padding:12px;background:#eaf2ff;border-radius:12px;margin-top:10px;line-height:1.7}.row{display:flex;gap:8px;align-items:center;justify-content:space-between;flex-wrap:wrap}.pill{background:#dfe8fa;color:#233b65;padding:5px 10px;border-radius:99px;font-size:12px;font-weight:800}.hidden{display:none!important}.footer{text-align:center;color:#bdcce8;font-size:12px;margin-top:25px}.log{border-bottom:1px solid #d9e0ec;padding:10px 0}.log:last-child{border:0}button:focus-visible{outline:3px solid #f4b83e;outline-offset:2px}@media(max-width:360px){.hero h1{font-size:23px}.stats{grid-template-columns:repeat(2,1fr)}}
 </style><style>
 /* V2.5 遊戲化：僅新增實際使用的介面 */
@@ -19,7 +19,11 @@
 .kid-settings .panel{padding:12px}.kid-settings .levels{grid-template-columns:repeat(3,minmax(0,1fr))}.kid-settings .level{font-size:13px;padding:7px 3px;min-height:62px}
 #game .writing-board{height:240px}#game .primary{min-height:58px}.write-note{line-height:1.5}
 @media(max-width:390px){.kid-hero{font-size:40px}.kid-welcome h2{font-size:18px}}
-</style><style>.storyline{background:#fff6df;color:#493513;border-radius:12px;padding:12px;margin:8px 0;font-weight:700}.source-line{font-size:12px;color:#4c607a;margin-top:12px;line-height:1.6}.source-line a{color:#235ba4}.learning-status{background:#eaf5ff;color:#23456b;border-radius:10px;padding:9px;margin-top:8px;font-size:13px}.quest-variant{font-size:13px;color:#465b7b;text-align:center;margin:6px 0}.game .panel{overflow:hidden}</style></head><body><main class="wrap"><header class="hero"><div>📜 ✨ 🏰 ✨ 📜</div><h1>字音字形大冒險</h1><div class="sub">寫 3 題，打敗怪獸，開啟寶箱！</div></header><div class="stats"><div class="stat">⭐ 等級<b id="levelStat">1</b></div><div class="stat">🪙 金幣<b id="coinStat">0</b></div></div><section id="home"><div class="panel"><div class="kid-welcome"><div class="kid-hero">🧙‍♀️ ⚔️ 👾</div><p>每關寫 3 題，答完就能開寶箱！資料只存在這台裝置的瀏覽器。</p><div class="kid-progress" id="kidProgress">🌳 字音森林 · 第 1 關</div></div><h2>準備出發</h2><button aria-label="開始冒險，手寫三題" class="primary" id="start">▶ 開始冒險</button><details class="extras kid-settings"><summary>⚙️ 大人設定／更多玩法</summary><div class="panel"><h2>🗺️ 選擇冒險地區</h2><div class="levels" id="levels"></div></div><h3>✍️ 練習種類</h3><div class="mode" id="modes"><button class="active" data-mode="mix">🎲 混合</button><button data-mode="sound">🔤 國字寫注音</button><button data-mode="shape">✏️ 注音寫國字</button></div><div class="panel" style="margin-top:12px"><h2>✍️ 三級手寫挑戰</h2><label for="compTier">選擇難度</label><select id="compTier" style="width:100%;padding:12px;margin:8px 0;background:#fff;color:#14233e;border-radius:10px"><option value="0">🌱 基礎</option><option value="1">📘 中等</option><option value="2">🔥 困難</option></select><div class="hint" id="compStatus"></div><label for="roundSize">每場題數</label><select id="roundSize" style="width:100%;padding:12px;margin:8px 0;background:#fff;color:#14233e;border-radius:10px"><option selected="" value="3">3 題｜冒險闖關</option><option value="5">5 題｜快速練習</option><option value="10">10 題｜標準挑戰</option><option value="20">20 題｜耐力挑戰</option><option value="100">100 題｜依可用題數</option></select><p class="hint">手指或滑鼠寫字；支援時自動辨識，不支援時可對照答案自評，並清楚標示自評。</p><button class="secondary" id="competition" style="width:100%;margin-top:9px">開始三級手寫挑戰</button><button class="secondary" id="bossChallenge" style="width:100%;margin-top:9px">👑 挑戰本級魔王（5 題）</button><p class="hint">本版為歷屆詞語改編與自編練習；不是官方原卷或已核定答案。未逐題審校，請勿用於正式評量。</p><details><summary>📎 題庫參考來源</summary><p><a href="https://www.wkes.ntpc.edu.tw/p/406-1000-9266,r88.php" rel="noopener" target="_blank">國小組歷屆題目與答案</a></p></details></div></details></div><details class="extras"><summary>🎒 我的勇者、寵物與商店</summary><div class="panel" id="shopPanel"><div class="row"><h2>🛍️ 勇者造型商店</h2><span class="pill" id="shopBalance">🪙 0</span></div><p class="quest-note">寫字賺金幣，永久收藏造型；已買的可以隨時換裝，不花真錢。</p><div class="closet" id="closet">🧙 我的勇者</div><div class="shop-grid" id="shopGrid"></div><h2 style="margin-top:18px">🐾 夥伴隊伍</h2><p class="quest-note">闖關解鎖夥伴，選擇一隻陪你冒險。</p><div class="shop-grid" id="petGrid"></div></div></details><details class="extras"><summary>🗺️ 看冒險地圖與每日任務</summary><div class="panel"><h2>🌈 文字王國冒險地圖</h2><div class="worldmap" id="worldMap"></div><div class="buddybox"><span class="buddyicon" id="buddyIcon">🥚</span><div style="flex:1"><b id="buddyName">神祕夥伴蛋</b><div class="play-note" id="buddyHint">完成挑戰蒐集星星，孵化小夥伴</div></div><button id="buddyBtn" type="button">夥伴圖鑑</button></div><div class="questline" id="dailyQuest">🎯 今日冒險任務</div><div class="play-note">每關只需寫 3 題！裝置若不支援辨識，可對照答案自行確認，繼續闖關。</div></div></details><details class="extras"><summary>📖 錯題本與學習紀錄</summary><div class="panel"><div class="row"><h2>📖 我的錯題本</h2><span class="pill" id="wrongCount">0 題</span></div><button class="secondary" id="review">複習錯題</button><div id="wrongList"></div><p class="quest-note">📅 錯題隔天優先複習；經系統辨識獨立答對兩次才列為已掌握。自評及提示後重寫不計入已驗證成績。</p></div><div class="panel"><h2>🏆 冒險成就</h2><div id="achievements"></div><div class="learning-status" id="qualitySummary"></div><div class="learning-status" id="learningDashboard"></div></div></details></section><section class="hidden" id="game"><div class="panel"><div class="row"><span class="pill" id="regionName"></span><span class="pill" id="roundText"></span></div><div class="fightbar"><span id="battleBuddy">🧙 小勇者</span><b id="comboLabel">✨ 連擊 0</b></div><div class="enemy" id="enemy">👾</div><div class="storyline" id="storyline" aria-live="polite"></div><div class="learning-status" id="petPower"></div><div class="mini-steps" id="stepDots"></div><div class="row"><b id="enemyName">文字怪獸</b><b id="hpText">HP 5 / 5</b></div><div class="progress"><div class="bar" id="hpBar" style="width:100%"></div></div><div class="question" id="question"></div><div class="hint" id="qtype"></div><div id="answers"></div><div aria-live="polite" class="result hidden" id="feedback"></div><button class="primary hidden" id="next">下一題 ➜</button><button class="secondary" id="exit" style="margin-top:12px;width:100%">↩️ 暫停，回首頁</button></div></section><section class="hidden" id="finish"><div class="panel" style="text-align:center"><div id="finishEmoji" style="font-size:60px">🏆</div><h2 id="finishTitle">挑戰完成</h2><p id="finishDesc"></p><div class="result" id="finishReward"></div><div class="reward-card" id="lootReward"></div><button class="primary" id="again">🚀 再玩一關</button><button class="secondary" id="back" style="width:100%;margin-top:9px">🗺️ 回首頁</button></div></section><div class="footer">V4.3 題庫去重與稽核測試版｜保留原有存檔｜手機手寫遊戲</div></main><script>
+</style><style>/* V4.4 compact mobile writing layout */
+@media(max-width:700px){#game .panel{padding:10px 12px;margin:4px 0}#game .fightbar,#game .enemy,#game .storyline,#game #petPower,#game .mini-steps,#game .progress,#game #hpText,#game #enemyName,#game #questionMeta,#game #variantText{display:none!important}#game .row{margin:2px 0}#game .question{scroll-margin-top:8px;margin:5px 0!important;padding:8px!important;font-size:clamp(19px,5vw,25px)!important;line-height:1.3}#game #qtype{margin:2px 0 4px!important;font-size:13px}#game #answers>.write-note:first-child{font-size:12px;margin:3px 0 5px;line-height:1.25}#game .writing-board{height:clamp(170px,34dvh,270px);min-height:170px;margin:4px 0!important;touch-action:none}#game #answers>.primary{min-height:50px;margin:5px 0!important;width:100%;font-size:18px}#game .write-tools{display:flex;gap:8px;margin:4px 0}#game .write-tools button{flex:1;min-height:40px;padding:6px;font-size:14px}#game #exit{margin-top:8px!important;min-height:42px}#game .source-line{display:none}}
+</style><style>.storyline{background:#fff6df;color:#493513;border-radius:12px;padding:12px;margin:8px 0;font-weight:700}.source-line{font-size:12px;color:#4c607a;margin-top:12px;line-height:1.6}.source-line a{color:#235ba4}.learning-status{background:#eaf5ff;color:#23456b;border-radius:10px;padding:9px;margin-top:8px;font-size:13px}.quest-variant{font-size:13px;color:#465b7b;text-align:center;margin:6px 0}.game .panel{overflow:hidden}</style><style>/* V4.9 home usability: visible settings and 10-second onboarding */
+#home>.panel{padding:14px;margin-top:8px}#home .kid-welcome{padding:4px 0 8px;margin:0}#home .kid-welcome .quick-guide{margin:4px 0 8px;font-size:clamp(14px,3.7vw,17px);font-weight:750;line-height:1.55;text-align:center;color:#173653}#home .kid-progress{margin:5px 0 9px}#home #start{margin:4px 0 12px;min-height:56px;font-size:21px}#home .always-visible{display:block;margin-top:8px;padding:12px;border:1px solid #d5e1f0;border-radius:14px;background:#f8fbff;color:#172c48}#home .settings-title{font-size:17px;margin:0 0 10px}#home .always-visible .panel{padding:9px;margin:8px 0}#home .always-visible h2{font-size:16px;margin:4px 0 8px}#home .always-visible h3{font-size:15px;margin:10px 0 5px}#home .always-visible .hint{font-size:12px}#home .always-visible select{margin:5px 0!important;padding:9px!important}#home .always-visible .levels{gap:6px}#home .always-visible .mode{gap:5px}#home .always-visible .mode button{font-size:13px;padding:9px 5px}#home .always-visible .level{min-height:48px}#home .always-visible #competition,#home .always-visible #bossChallenge{min-height:44px;margin-top:6px!important}#home .always-visible .settings-title{color:#173653}@media(max-width:700px){header.hero{padding:10px 8px 6px}header.hero>div:first-child{display:none}header.hero h1{font-size:clamp(22px,6vw,30px);margin:3px 0}header.hero .sub{font-size:13px}#home .always-visible{padding:9px}#home .always-visible .mode{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}#home .always-visible .mode button{min-width:0;line-height:1.3}#home .always-visible .levels{grid-template-columns:repeat(3,minmax(0,1fr))}}
+</style></head><body><main class="wrap"><header class="hero"><div>📜 ✨ 🏰 ✨ 📜</div><h1>字音字形大冒險</h1><div class="sub">看題目 → 手寫 → 完成闖關！</div></header><div class="stats"><div class="stat">⭐ 等級<b id="levelStat">1</b></div><div class="stat">🪙 金幣<b id="coinStat">0</b></div></div><section id="home"><div class="panel"><div class="kid-welcome"><p class="quick-guide">① 看題目　② 手寫答案　③ 按「我寫好了」</p><div class="kid-progress" id="kidProgress">🌳 字音森林 · 第 1 關</div></div><button aria-label="開始冒險，手寫三題" class="primary" id="start">▶ 開始冒險</button><div class="extras kid-settings always-visible"><h2 class="settings-title">⚙️ 大人設定／更多玩法</h2><div class="panel"><h2>🗺️ 選擇冒險地區</h2><div class="levels" id="levels"></div></div><h3>✍️ 練習種類</h3><div class="mode" id="modes"><button class="active" data-mode="mix">🎲 混合</button><button data-mode="sound">🔤 國字寫注音</button><button data-mode="shape">✏️ 注音寫國字</button></div><div class="panel" style="margin-top:12px"><h2>✍️ 三級手寫挑戰</h2><label for="compTier">選擇難度</label><select id="compTier" style="width:100%;padding:12px;margin:8px 0;background:#fff;color:#14233e;border-radius:10px"><option value="0">🌱 基礎</option><option value="1">📘 中等</option><option value="2">🔥 困難</option></select><div class="hint" id="compStatus"></div><label for="roundSize">每場題數</label><select id="roundSize" style="width:100%;padding:12px;margin:8px 0;background:#fff;color:#14233e;border-radius:10px"><option selected="" value="3">3 題｜冒險闖關</option><option value="5">5 題｜快速練習</option><option value="10">10 題｜標準挑戰</option><option value="20">20 題｜耐力挑戰</option><option value="100">100 題｜依可用題數</option></select><p class="hint">手指或滑鼠寫字；支援時自動辨識，不支援時可對照答案自評，並清楚標示自評。</p><button class="secondary" id="competition" style="width:100%;margin-top:9px">開始三級手寫挑戰</button><button class="secondary" id="bossChallenge" style="width:100%;margin-top:9px">👑 挑戰本級魔王（5 題）</button><p class="hint">本版為國小三、四年級校內競賽自編練習；不是學校指定題庫或官方原卷。注音尚待逐題辭典複核，請勿視為已核定答案。</p><details><summary>📎 題庫參考來源</summary><p><a href="https://www.wkes.ntpc.edu.tw/p/406-1000-9266,r88.php" rel="noopener" target="_blank">國小組歷屆題目與答案</a></p></details></div></div></div><details class="extras"><summary>🎒 我的勇者、寵物與商店</summary><div class="panel" id="shopPanel"><div class="row"><h2>🛍️ 勇者造型商店</h2><span class="pill" id="shopBalance">🪙 0</span></div><p class="quest-note">寫字賺金幣，永久收藏造型；已買的可以隨時換裝，不花真錢。</p><div class="closet" id="closet">🧙 我的勇者</div><div class="shop-grid" id="shopGrid"></div><h2 style="margin-top:18px">🐾 夥伴隊伍</h2><p class="quest-note">闖關解鎖夥伴，選擇一隻陪你冒險。</p><div class="shop-grid" id="petGrid"></div></div></details><details class="extras"><summary>🗺️ 看冒險地圖與每日任務</summary><div class="panel"><h2>🌈 文字王國冒險地圖</h2><div class="worldmap" id="worldMap"></div><div class="buddybox"><span class="buddyicon" id="buddyIcon">🥚</span><div style="flex:1"><b id="buddyName">神祕夥伴蛋</b><div class="play-note" id="buddyHint">完成挑戰蒐集星星，孵化小夥伴</div></div><button id="buddyBtn" type="button">夥伴圖鑑</button></div><div class="questline" id="dailyQuest">🎯 今日冒險任務</div><div class="play-note">每關只需寫 3 題！裝置若不支援辨識，可對照答案自行確認，繼續闖關。</div></div></details><details class="extras"><summary>📖 錯題本與學習紀錄</summary><div class="panel"><div class="row"><h2>📖 我的錯題本</h2><span class="pill" id="wrongCount">0 題</span></div><button class="secondary" id="review">複習錯題</button><div id="wrongList"></div><p class="quest-note">📅 錯題隔天優先複習；經系統辨識獨立答對兩次才列為已掌握。自評及提示後重寫不計入已驗證成績。</p></div><div class="panel"><h2>🏆 冒險成就</h2><div id="achievements"></div><div class="learning-status" id="qualitySummary"></div><div class="learning-status" id="learningDashboard"></div></div></details></section><section class="hidden" id="game"><div class="panel"><div class="row"><span class="pill" id="regionName"></span><span class="pill" id="roundText"></span></div><div class="fightbar"><span id="battleBuddy">🧙 小勇者</span><b id="comboLabel">✨ 連擊 0</b></div><div class="enemy" id="enemy">👾</div><div class="storyline" id="storyline" aria-live="polite"></div><div class="learning-status" id="petPower"></div><div class="mini-steps" id="stepDots"></div><div class="row"><b id="enemyName">文字怪獸</b><b id="hpText">HP 5 / 5</b></div><div class="progress"><div class="bar" id="hpBar" style="width:100%"></div></div><div class="question" id="question"></div><div class="hint" id="qtype"></div><div id="answers"></div><div aria-live="polite" class="result hidden" id="feedback"></div><button class="primary hidden" id="next">下一題 ➜</button><button class="secondary" id="exit" style="margin-top:12px;width:100%">↩️ 暫停，回首頁</button></div></section><section class="hidden" id="finish"><div class="panel" style="text-align:center"><div id="finishEmoji" style="font-size:60px">🏆</div><h2 id="finishTitle">挑戰完成</h2><p id="finishDesc"></p><div class="result" id="finishReward"></div><div class="reward-card" id="lootReward"></div><button class="primary" id="again">🚀 再玩一關</button><button class="secondary" id="back" style="width:100%;margin-top:9px">🗺️ 回首頁</button></div></section><div class="footer">V4.8 競賽進階題庫測試版（新題待審校）｜保留原有存檔｜手機手寫遊戲</div></main><script>
 'use strict';
 const bank=[
 // 初級
@@ -179,14 +183,99 @@ for(const [term,word,zhuyin,tier] of competition100Pairs){
  bank.push({...base,t:'sound',q:term+'｜請手寫「'+word+'」的注音',prompt:term+'\n請寫「'+word+'」的注音',e:'「'+word+'」讀作 '+zhuyin+'。'});
 }
 
+
+// V4.5 校內中年級競賽補充題：自行編寫，並非官方試題；注音仍須逐題權威辭典複核。
+const middleGradeContestPairs=[["一絲不苟","苟","ㄍㄡˇ",0],["聚精會神","聚","ㄐㄩˋ",0],["迫在眉睫","睫","ㄐㄧㄝˊ",1],["恍然大悟","恍","ㄏㄨㄤˇ",0],["目不轉睛","睛","ㄐㄧㄥ",0],["興高采烈","采","ㄘㄞˇ",0],["欣喜若狂","若","ㄖㄨㄛˋ",0],["不約而同","約","ㄩㄝ",0],["垂頭喪氣","喪","ㄙㄤˋ",0],["漫不經心","漫","ㄇㄢˋ",0],["琳瑯滿目","瑯","ㄌㄤˊ",1],["眼花撩亂","撩","ㄌㄧㄠˊ",1],["津津有味","津","ㄐㄧㄣ",0],["忐忑不安","忐","ㄊㄢˇ",1],["忐忑不安","忑","ㄊㄜˋ",1],["目瞪口呆","瞪","ㄉㄥˋ",1],["異口同聲","異","ㄧˋ",0],["迫不及待","及","ㄐㄧˊ",0],["絡繹不絕","繹","ㄧˋ",1],["絡繹不絕","絡","ㄌㄨㄛˋ",1],["無精打采","采","ㄘㄞˇ",0],["無可奈何","奈","ㄋㄞˋ",1],["心曠神怡","曠","ㄎㄨㄤˋ",1],["心曠神怡","怡","ㄧˊ",1],["豁然開朗","豁","ㄏㄨㄛˋ",2],["躍躍欲試","躍","ㄩㄝˋ",1],["躍躍欲試","欲","ㄩˋ",0],["驚慌失措","措","ㄘㄨㄛˋ",1],["惴惴不安","惴","ㄓㄨㄟˋ",2],["鍥而不捨","鍥","ㄑㄧㄝˋ",2],["孜孜不倦","孜","ㄗ",2],["孜孜不倦","倦","ㄐㄩㄢˋ",1],["栩栩如生","栩","ㄒㄩˇ",2],["惟妙惟肖","肖","ㄒㄧㄠˋ",2],["循循善誘","循","ㄒㄩㄣˊ",1],["循循善誘","誘","ㄧㄡˋ",1],["彬彬有禮","彬","ㄅㄧㄣ",1],["匪夷所思","匪","ㄈㄟˇ",2],["振聾發聵","聵","ㄎㄨㄟˋ",2],["大相逕庭","逕","ㄐㄧㄥˋ",2]];
+for(const [term,word,zhuyin,tier] of middleGradeContestPairs){
+ const pos=term.indexOf(word);
+ if([...term].length!==4||!term.includes(word)||!/^ㄅ|^ㄆ|^ㄇ|^ㄈ|^ㄉ|^ㄊ|^ㄋ|^ㄌ|^ㄍ|^ㄎ|^ㄏ|^ㄐ|^ㄑ|^ㄒ|^ㄓ|^ㄔ|^ㄕ|^ㄖ|^ㄗ|^ㄘ|^ㄙ|^ㄧ|^ㄨ|^ㄩ|^ㄚ|^ㄛ|^ㄜ|^ㄝ|^ㄞ|^ㄟ|^ㄠ|^ㄡ|^ㄢ|^ㄣ|^ㄤ|^ㄥ/.test(zhuyin))throw Error('V4.5 題庫格式錯誤：'+term);
+ const base={d:tier,word,zhuyin,term,fourChar:true,source:'中年級校內競賽自編補充題',provenance:'自編練習（非官方原題；待逐題辭典複核）',reviewStatus:'待辭典複核'};
+ bank.push({...base,t:'shape',q:term+'｜請手寫「'+zhuyin+'」的國字',prompt:term.slice(0,pos)+'□'+term.slice(pos+1)+'\n提示注音：'+zhuyin,e:'完整詞語：'+term+'。'});
+ bank.push({...base,t:'sound',q:term+'｜請手寫「'+word+'」的注音',prompt:term+'\n請寫「'+word+'」的注音',e:'「'+word+'」讀作 '+zhuyin+'。'});
+}
+
+
+// V4.8 競賽進階題：罕見字、形近混淆、易誤讀；自編候選題，待教育部逐題審校。
+// 保留舊題庫順序及既有 localStorage 存檔；不宣稱以下候選題已經官方核定。
+const advancedContestPairs=[
+ ["鳩占鵲巢","鵲","ㄑㄩㄝˋ",2,"生僻字"],
+ ["鶴立雞群","鶴","ㄏㄜˋ",1,"易誤讀"],
+ ["如火如荼","荼","ㄊㄨˊ",2,"易誤讀"],
+ ["不容置喙","喙","ㄏㄨㄟˋ",2,"生僻字"],
+ ["咄咄逼人","咄","ㄉㄨㄛˋ",2,"易誤讀"],
+ ["剛愎自用","愎","ㄅㄧˋ",2,"易誤讀"],
+ ["一蹴可幾","蹴","ㄘㄨˋ",2,"生僻字"],
+ ["噤若寒蟬","噤","ㄐㄧㄣˋ",2,"易誤讀"],
+ ["瞠目結舌","瞠","ㄔㄥ",2,"形近混淆"],
+ ["大腹便便","便","ㄆㄧㄢˊ",2,"多音字"],
+ ["方興未艾","艾","ㄞˋ",2,"語境讀音"],
+ ["參差不齊","參","ㄘㄣ",2,"多音字"],
+ ["參差不齊","差","ㄘ",2,"多音字"],
+ ["模稜兩可","稜","ㄌㄥˊ",2,"易誤讀"],
+ ["矯揉造作","矯","ㄐㄧㄠˇ",2,"形近混淆"],
+ ["相濡以沫","濡","ㄖㄨˊ",2,"形近混淆"],
+ ["未雨綢繆","繆","ㄇㄡˊ",2,"多音字"],
+ ["削足適履","削","ㄒㄩㄝˋ",2,"多音字"],
+ ["不勝枚舉","勝","ㄕㄥ",1,"多音字"],
+ ["一曝十寒","曝","ㄆㄨˋ",2,"多音字"],
+ ["自怨自艾","艾","ㄧˋ",2,"語境讀音"],
+ ["戛然而止","戛","ㄐㄧㄚˊ",2,"易誤讀"],
+ ["寡廉鮮恥","鮮","ㄒㄧㄢˇ",2,"多音字"],
+ ["莘莘學子","莘","ㄕㄣ",2,"易誤讀"],
+ ["振聾發聵","聾","ㄌㄨㄥˊ",2,"形近混淆"],
+ ["一丘之貉","貉","ㄏㄜˊ",2,"易誤讀"]
+];
+for(const [term,word,zhuyin,tier,category] of advancedContestPairs){
+ const chars=[...term],pos=chars.indexOf(word);
+ if(chars.length!==4||pos<0||chars.filter(x=>x===word).length!==1||!/^ㄅ|^ㄆ|^ㄇ|^ㄈ|^ㄉ|^ㄊ|^ㄋ|^ㄌ|^ㄍ|^ㄎ|^ㄏ|^ㄐ|^ㄑ|^ㄒ|^ㄓ|^ㄔ|^ㄕ|^ㄖ|^ㄗ|^ㄘ|^ㄙ|^ㄧ|^ㄨ|^ㄩ|^ㄚ|^ㄛ|^ㄜ|^ㄝ|^ㄞ|^ㄟ|^ㄠ|^ㄡ|^ㄢ|^ㄣ|^ㄤ|^ㄥ/.test(zhuyin))throw Error('V4.8 進階題格式錯誤：'+term);
+ const base={d:tier,word,zhuyin,term,fourChar:true,source:'校內競賽進階自編候選題',provenance:'自編'+category+'題（非官方原題）',reviewStatus:'待辭典複核',contestCategory:category};
+ bank.push({...base,t:'shape',q:term+'｜請手寫「'+zhuyin+'」的國字',prompt:chars.map((c,i)=>i===pos?'□':c).join('')+'\n提示注音：'+zhuyin,e:'完整詞語：'+term+'。'});
+ bank.push({...base,t:'sound',q:term+'｜請手寫「'+word+'」的注音',prompt:term+'\n請寫「'+word+'」的注音',e:'「'+word+'」讀作 '+zhuyin+'。'});
+}
+
+// V4.8：校內競賽進階候選題；先以練習題加入，尚未逐題完成官方審校。
+// 保持原始題庫順序，僅在末尾追加，保護舊存檔題目索引。
+const extraChallengePairs=[
+ ["風聲鶴唳","唳","ㄌㄧˋ","生僻字"],
+ ["杯盤狼藉","藉","ㄐㄧˊ","多音字"],
+ ["螳臂當車","螳","ㄊㄤˊ","生僻字"],
+ ["怙惡不悛","悛","ㄑㄩㄢ","易誤讀"],
+ ["嗤之以鼻","嗤","ㄔ","形近混淆"],
+ ["釜底抽薪","釜","ㄈㄨˇ","形近混淆"],
+ ["曲突徙薪","徙","ㄒㄧˇ","形近混淆"],
+ ["越俎代庖","俎","ㄗㄨˇ","生僻字"],
+ ["膾炙人口","膾","ㄎㄨㄞˋ","易誤讀"],
+ ["焚膏繼晷","晷","ㄍㄨㄟˇ","生僻字"]
+];
+for(const [term,word,zhuyin,category] of extraChallengePairs){
+ const chars=[...term],pos=chars.indexOf(word);
+ if(chars.length!==4||pos<0||chars.filter(c=>c===word).length!==1)throw Error('V4.8 題目格式錯誤 '+term);
+ const base={d:2,word,zhuyin,term,fourChar:true,source:'V4.8 校內競賽自編候選題',provenance:'自編練習（非官方原題）',reviewStatus:'待辭典複核',contestCategory:category};
+ bank.push({...base,t:'shape',q:term+'｜寫國字',prompt:chars.map((c,i)=>i===pos?'□':c).join('')+'\n提示注音：'+zhuyin,e:'完整詞語：'+term+'。'});
+ bank.push({...base,t:'sound',q:term+'｜寫注音',prompt:term+'\n請寫「'+word+'」的注音',e:'「'+word+'」讀作 '+zhuyin+'。'});
+}
+
+// V4.6：僅標記已由教育部《國語辭典簡編本》詞條實際核對的指定字。
+// 未列入此表的題目仍是待審校，絕不自動標為已核對。
+const moEVerifiedPairs={"如火如荼|荼":{"zhuyin":"ㄊㄨˊ","url":"https://dict.concised.moe.edu.tw/dictView.jsp?ID=36330&la=0&powerMode=0"},"大腹便便|便":{"zhuyin":"ㄆㄧㄢˊ","url":"https://dict.concised.moe.edu.tw/search.jsp?la=0&page=3&powerMode=0&word=%E4%BE%BF"},"川流不息|息":{"zhuyin":"ㄒㄧˊ","url":"https://dict.concised.moe.edu.tw/dictView.jsp?ID=32788&la=0&powerMode=0"},"鍥而不捨|鍥":{"zhuyin":"ㄑㄧㄝˋ","url":"https://dict.concised.moe.edu.tw/dictView.jsp?ID=24836&la=0&powerMode=0"},"相形見絀|絀":{"zhuyin":"ㄔㄨˋ","url":"https://dict.concised.moe.edu.tw/dictView.jsp?ID=27891&la=0&powerMode=0"},"絡繹不絕|繹":{"zhuyin":"ㄧˋ","url":"https://dict.concised.moe.edu.tw/dictView.jsp?ID=15452&la=0&powerMode=0"},"絡繹不絕|絡":{"zhuyin":"ㄌㄨㄛˋ","url":"https://dict.concised.moe.edu.tw/dictView.jsp?ID=15452&la=0&powerMode=0"},"一絲不苟|苟":{"zhuyin":"ㄍㄡˇ","url":"https://dict.concised.moe.edu.tw/dictView.jsp?ID=40206&la=0&powerMode=0"}};
+for(const q of bank){
+ if(!q.fourChar)continue;
+ const verified=moEVerifiedPairs[(q.term||'')+'|'+(q.word||'')];
+ if(verified&&q.zhuyin===verified.zhuyin){q.reviewStatus='已核對教育部簡編本';q.reviewSourceUrl=verified.url;}
+ else if(!q.reviewStatus){q.reviewStatus='待逐題核對';}
+}
+
 function normalizeAnswer(v,t){let x=String(v).normalize('NFKC').replace(/[\s　，,。．.、·・-]/g,'').trim();if(t==='sound')return x.replace(/ˉ/g,'');return x;}
 // 題庫稽核：保留舊題索引以遷移既有存檔；僅將四字詞語納入正式出題。
-const playableCandidates=bank.map((q,i)=>({...q,id:i,stableId:'q4:'+encodeURIComponent([q.term||'',q.word||'',q.zhuyin||'',q.t].join('|'))})).filter(q=>q.fourChar&&[...q.term].length===4&&q.term.includes(q.word)&&q.zhuyin&&q.prompt&&['sound','shape'].includes(q.t));
+// 中年級校內競賽出題範圍：保留舊資料與索引，只在抽題時排除明顯過淺或過深的舊題。
+const contestExcludedTerms=new Set(['自言自語','四面八方','一心一意','五花八門','七上八下','一目了然','大吃一驚','飲鴆止渴','暴殄天物','沆瀣一氣','醍醐灌頂','觥籌交錯','篳路藍縷','饕餮盛宴','魑魅魍魎','夙夜匪懈','大快朵頤','案牘勞形','嘉言懿行','獐頭鼠目','斷壁頹垣','恪守不渝']);
+const playableCandidates=bank.map((q,i)=>({...q,id:i,stableId:'q4:'+encodeURIComponent([q.term||'',q.word||'',q.zhuyin||'',q.t].join('|'))})).filter(q=>!contestExcludedTerms.has(q.term)&&q.fourChar&&[...q.term].length===4&&q.term.includes(q.word)&&q.zhuyin&&q.prompt&&['sound','shape'].includes(q.t));
 // 去重只影響抽題，不更動 bank 原始索引或已存在的玩家資料。
 const seenQuestionIds=new Set();
 const playableBank=playableCandidates.filter(q=>{if(seenQuestionIds.has(q.stableId))return false;seenQuestionIds.add(q.stableId);return true;});
 const qualityReport={all:bank.length,playable:playableBank.length,invalid:bank.filter(q=>q.fourChar&&!playableBank.some(x=>x.id===bank.indexOf(q))).length,missingSource:playableBank.filter(q=>!q.source||!q.sourceUrl).length};
 const duplicatePlayableIds=playableCandidates.length-playableBank.length;
+const verifiedPlayableCount=playableBank.filter(q=>q.reviewStatus==='已核對教育部簡編本').length;
 const questionByStable=Object.fromEntries(playableBank.map(q=>[q.stableId,q]));
 const questionByLegacy=Object.fromEntries(playableBank.map(q=>[String(q.id),q]));
 const KEY='ziyin_zixing_adventure_v1';let state={exp:0,coins:0,best:0,unlocked:0,clears:[0,0,0,0],wrong:{},total:0,recent:[]};try{let saved=JSON.parse(localStorage.getItem(KEY));if(saved&&typeof saved==='object'){state={...state,...saved,wrong:saved.wrong||{},clears:Array.isArray(saved.clears)?saved.clears:[0,0,0,0],recent:Array.isArray(saved.recent)?saved.recent:[]}}}catch(e){};
@@ -212,7 +301,7 @@ function updateCompetition(){
 $('compTier').addEventListener('change',updateCompetition);
 function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}}function stats(){ $('levelStat').textContent=Math.floor(state.exp/100)+1;$('coinStat').textContent=state.coins;}
 function show(id){['home','game','finish'].forEach(x=>$(x).classList.toggle('hidden',x!==id));window.scrollTo(0,0)}
-function render(){stats();const qr=$('qualitySummary');if(qr)qr.textContent=`📚 可用四字題 ${qualityReport.playable} 題｜未附可直接查閱來源網址 ${qualityReport.missingSource} 題｜重複題目 ID ${duplicatePlayableIds} 筆｜未完成逐題權威字典校對，請勿作為正式競賽判分依據。`; reportV41();const kp=$('kidProgress');if(kp)kp.textContent=['🌳 字音森林','🏡 成語小鎮','🏰 困難古城'][Math.min(state.unlocked,2)]+' · 已通關 '+(state.clears[Math.min(state.unlocked,2)]||0)+' 次';$('levels').replaceChildren();names.forEach((name,i)=>{let b=document.createElement('button');b.className='level'+(diff===i?' active':'');b.disabled=i>state.unlocked;b.textContent=name+(i>state.unlocked?' 🔒':'')+'\n'+(state.clears[i]||0)+' 次通關';b.style.whiteSpace='pre-line';b.onclick=()=>{diff=i;render();renderFun()};$('levels').append(b)});let wrong=playableBank.filter(q=>needsReview(q));$('wrongCount').textContent=wrong.length+' 題';$('review').disabled=!wrong.length;$('wrongList').replaceChildren();wrong.slice(0,6).forEach(q=>{let p=document.createElement('div');p.className='log';p.textContent=(q.prompt||q.q)+'（需獨立答對 2 次，已完成 '+(recordFor(q)?.verified||0)+' 次）';$('wrongList').append(p)});let ach=[['🌟 初次冒險',state.total>=1],['🛡️ 森林守護者',state.clears[0]>0],['⚔️ 國字勇者',state.clears[1]>0],['🏆 成語大師',state.clears[2]>0],['👑 魔王挑戰者',state.best>=5],['💎 百分達人',state.exp>=100]];$('achievements').textContent=ach.map(([n,ok])=>(ok?'✅ ':'🔒 ')+n).join('　');}
+function render(){stats();const qr=$('qualitySummary');if(qr)qr.textContent=`📚 可用四字題 ${qualityReport.playable} 題｜未附可直接查閱來源網址 ${qualityReport.missingSource} 題｜重複題目 ID ${duplicatePlayableIds} 筆｜已核對教育部簡編本 ${verifiedPlayableCount} 題｜其餘待校對，請勿作為正式競賽判分依據。`; reportV41();const kp=$('kidProgress');if(kp)kp.textContent=['🌳 字音森林','🏡 成語小鎮','🏰 困難古城'][Math.min(state.unlocked,2)]+' · 已通關 '+(state.clears[Math.min(state.unlocked,2)]||0)+' 次';$('levels').replaceChildren();names.forEach((name,i)=>{let b=document.createElement('button');b.className='level'+(diff===i?' active':'');b.disabled=i>state.unlocked;b.textContent=name+(i>state.unlocked?' 🔒':'')+'\n'+(state.clears[i]||0)+' 次通關';b.style.whiteSpace='pre-line';b.onclick=()=>{diff=i;render();renderFun()};$('levels').append(b)});let wrong=playableBank.filter(q=>needsReview(q));$('wrongCount').textContent=wrong.length+' 題';$('review').disabled=!wrong.length;$('wrongList').replaceChildren();wrong.slice(0,6).forEach(q=>{let p=document.createElement('div');p.className='log';p.textContent=(q.prompt||q.q)+'（需獨立答對 2 次，已完成 '+(recordFor(q)?.verified||0)+' 次）';$('wrongList').append(p)});let ach=[['🌟 初次冒險',state.total>=1],['🛡️ 森林守護者',state.clears[0]>0],['⚔️ 國字勇者',state.clears[1]>0],['🏆 成語大師',state.clears[2]>0],['👑 魔王挑戰者',state.best>=5],['💎 百分達人',state.exp>=100]];$('achievements').textContent=ach.map(([n,ok])=>(ok?'✅ ':'🔒 ')+n).join('　');}
 $('modes').querySelectorAll('button').forEach(b=>b.onclick=()=>{mode=b.dataset.mode;$('modes').querySelectorAll('button').forEach(x=>x.classList.toggle('active',x===b));updateCompetition()});
 function shuffle(arr){let a=[...arr];for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
 const LEARNKEY='ziyin_zixing_learning_v33';
@@ -271,17 +360,17 @@ function draw(){
  canvas.addEventListener('pointermove',e=>{if(!writing||!current)return;e.preventDefault();current.push(point(e));paint()});
  const stop=()=>{writing=false;current=null};canvas.addEventListener('pointerup',stop);canvas.addEventListener('pointercancel',stop);
  const tools=document.createElement('div');tools.className='write-tools';
- for(const [label,action] of [['↶ 撤銷一筆',()=>strokes.pop()],['🧽 全部重寫',()=>strokes=[]]]){const btn=document.createElement('button');btn.textContent=label;btn.onclick=()=>{action();paint()};tools.append(btn)}area.append(tools);
+ for(const [label,action] of [['↶ 撤銷一筆',()=>strokes.pop()],['🧽 全部重寫',()=>strokes=[]]]){const btn=document.createElement('button');btn.textContent=label;btn.onclick=()=>{action();paint()};tools.append(btn)}
  const submit=document.createElement('button');submit.className='primary';submit.textContent='✍️ 我寫好了！';
- const status=document.createElement('p');status.className='write-note';status.setAttribute('role','status');status.textContent='正在檢查本機瀏覽器的手寫辨識支援…';area.append(status);
+ const status=document.createElement('p');status.className='write-note';status.setAttribute('role','status');status.textContent='';status.classList.add('hidden');area.append(status);
  let recognizer=null,ready=false;
  (async()=>{try{
    if(typeof navigator.queryHandwritingRecognizer!=='function'||typeof navigator.createHandwritingRecognizer!=='function')throw Error('這個瀏覽器沒有提供手寫辨識介面');
    const support=await navigator.queryHandwritingRecognizer({languages:['zh-Hant']});
    if(!support)throw Error('裝置沒有繁體中文手寫辨識模型');
    recognizer=await navigator.createHandwritingRecognizer({languages:['zh-Hant']});ready=true;
-   status.textContent='✅ 已啟用裝置手寫辨識；寫完即可自動批改。';
- }catch(err){status.textContent='🖍️ 本機無法自動辨識。寫完可對照答案自行確認；不計入已驗證學習成績。';}})();
+   submit.textContent='✍️ 我寫好了！';
+ }catch(err){ready=false;submit.textContent='✍️ 我寫好了・核對答案';}})();
  submit.onclick=async()=>{
    if(!strokes.length){alert('請先在白板上寫出答案。');return}
    if(s.answered||session!==s)return;
@@ -309,9 +398,9 @@ function draw(){
  };
  function retryWriting(){attempts++;assisted=true;strokes=[];paint();fbReset();submit.disabled=false;status.textContent='💡 看完答案後，請自己再寫一次。這題會標記為提示後完成。';}
  function fbReset(){$('feedback').replaceChildren();$('feedback').classList.add('hidden')}
- area.append(submit);
+ area.append(submit);area.append(tools);
  if(fun.activePet==='小雞勇者'&&!s.petHintUsed){const petBtn=document.createElement('button');petBtn.className='secondary';petBtn.textContent='🐥 小雞提示（本關一次）';petBtn.onclick=()=>{if(s.answered)return;s.petHintUsed=true;assisted=true;recordAttempt(q,'miss',false);showLearning(q,q.t==='sound'?q.zhuyin:q.word,$('feedback'),()=>retryWriting());$('feedback').classList.remove('hidden');petBtn.remove()};area.append(petBtn)}
- requestAnimationFrame(resize);
+ requestAnimationFrame(()=>{resize();if(window.innerWidth<=700){const qel=$('question');if(qel)qel.scrollIntoView({block:'start',behavior:'instant'});}});
 }
 function showLearning(q,expected,fb,retry){
  const card=document.createElement('div');card.className='learning-card';
