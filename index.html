@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+
+<html lang="zh-Hant"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/><meta content="#16243e" name="theme-color"/><title>字音字形大冒險 V4.2｜品質驗收測試版</title><style>
+:root{font-family:system-ui,'Noto Sans TC',sans-serif;color:#f6f8ff;background:#10182b}*{box-sizing:border-box}body{margin:0;background:linear-gradient(160deg,#10182b,#253d61);min-height:100vh}button,select,input{font:inherit}.writing-board{width:100%;height:270px;display:block;background:#fff;border:2px solid #8da4c8;border-radius:14px;touch-action:none;cursor:crosshair}.write-tools{display:flex;gap:8px;margin-top:10px}.write-tools button{flex:1;background:#e4ecfa;color:#18314f}.write-note{font-size:13px;color:#435b79;margin:8px 0} .type-answer{width:100%;font-size:23px;padding:14px;border:2px solid #809bc4;border-radius:12px;background:#fff;color:#14243d;min-height:58px} .type-answer:focus{outline:3px solid #f2bd4b} .zhuyin-pad{display:grid;grid-template-columns:repeat(6,1fr);gap:5px;margin-top:10px}.zhuyin-pad button{padding:9px 2px;background:#e3ebfb;color:#1b3053;font-size:18px;border-radius:9px}.zhuyin-pad .wide{grid-column:span 3;font-size:14px}.entry-tip{font-size:13px;color:#546784;margin:8px 0}button{cursor:pointer;border:0;border-radius:14px;padding:13px 16px;font-weight:800;background:#f5c65d;color:#20263b}button:disabled{opacity:.45;cursor:not-allowed}.wrap{max-width:600px;margin:auto;padding:16px 14px 40px}.hero{padding:18px;background:linear-gradient(120deg,#354e80,#223653);border:2px solid #7284b2;border-radius:20px;text-align:center}.hero h1{margin:4px 0;font-size:27px}.sub{color:#d6e4fc;font-size:13px}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin:14px 0}.stat{background:#253551;border:1px solid #5b7299;border-radius:12px;text-align:center;padding:10px 3px;font-size:12px}.stat b{display:block;font-size:17px;color:#ffdf86}.panel{background:#f8f9ff;color:#18263c;border-radius:18px;padding:18px;margin:13px 0;box-shadow:0 7px 20px #0003}.panel h2{margin:0 0 12px;font-size:21px}.levels{display:grid;grid-template-columns:1fr 1fr;gap:10px}.level{background:#e7edfc;color:#18263c;border:2px solid #c6d4ed;text-align:left;min-height:82px}.level.active{border-color:#365cb3;background:#d8e8ff}.level:disabled{background:#e4e5e9}.mode{display:flex;gap:8px;flex-wrap:wrap}.mode button{background:#e7ecf6;color:#223a5e;flex:1;min-width:90px}.mode button.active{background:#3155a4;color:white}.primary{background:#f2bd4b;width:100%;margin-top:12px}.secondary{background:#dce7f9;color:#193558}.answer{width:100%;display:flex;justify-content:space-between;align-items:center;margin:9px 0;text-align:left;background:#e9effa;color:#1b2b44;border:2px solid #cbd9ed;min-height:57px}.answer.correct{background:#d5f5dc;border-color:#279747}.answer.wrong{background:#ffe0e0;border-color:#d34b4b}.progress{height:12px;border-radius:99px;background:#cbd6e8;overflow:hidden;margin:12px 0}.bar{height:100%;background:#3b8b63;transition:width .2s}.enemy{font-size:54px;text-align:center;line-height:1.4}.question{font-size:23px;font-weight:900;line-height:1.5;text-align:center;margin:15px 0}.hint{font-size:14px;color:#50627c;line-height:1.6}.result{padding:12px;background:#eaf2ff;border-radius:12px;margin-top:10px;line-height:1.7}.row{display:flex;gap:8px;align-items:center;justify-content:space-between;flex-wrap:wrap}.pill{background:#dfe8fa;color:#233b65;padding:5px 10px;border-radius:99px;font-size:12px;font-weight:800}.hidden{display:none!important}.footer{text-align:center;color:#bdcce8;font-size:12px;margin-top:25px}.log{border-bottom:1px solid #d9e0ec;padding:10px 0}.log:last-child{border:0}button:focus-visible{outline:3px solid #f4b83e;outline-offset:2px}@media(max-width:360px){.hero h1{font-size:23px}.stats{grid-template-columns:repeat(2,1fr)}}
+</style><style>
+/* V2.5 遊戲化：僅新增實際使用的介面 */
+.worldmap{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:12px 0}.worldstop{border:2px solid #d7e7f3;border-radius:16px;background:#f4fbff;color:#243653;padding:12px 5px;text-align:center;font-size:13px}.worldstop strong{display:block;font-size:29px}.worldstop.current{border-color:#ffba45;background:#fff2cd}.worldstop.locked{opacity:.55}.buddybox{display:flex;align-items:center;justify-content:space-between;gap:12px;background:#fff7e7;color:#3b2a18;border-radius:16px;padding:12px;margin:10px 0}.buddyicon{font-size:42px}.buddybox button{background:#593e93;color:white;border:0;border-radius:12px;padding:10px 12px;font-weight:700}.questline{background:#e9f7f2;color:#1c4b40;padding:12px;border-radius:14px;margin:10px 0}.sparkpop{animation:pop .5s ease-in-out}.enemy.bounce{animation:pop .55s ease-in-out}@keyframes pop{0%{transform:scale(1)}40%{transform:scale(1.23) rotate(-7deg)}100%{transform:scale(1)}}.fightbar{display:flex;align-items:center;justify-content:space-between;padding:10px;background:#f0eaff;color:#31244c;border-radius:14px;margin:10px 0}.mini-steps{display:flex;gap:5px;justify-content:center;margin:10px 0}.mini-steps span{height:9px;flex:1;background:#e5e9f0;border-radius:9px}.mini-steps span.done{background:#4cbb8c}.mini-steps span.now{background:#ffbf4d}.reward-card{padding:12px;border-radius:16px;background:#fff3d6;color:#49351e;margin:10px 0;text-align:center;font-weight:800}.play-note{font-size:12px;line-height:1.5;color:#576777} @media(max-width:400px){.worldstop{font-size:11px;padding:9px 3px}.worldstop strong{font-size:24px}}
+
+.shop-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.shop-item{background:#edf3ff;border:2px solid #d3def2;border-radius:15px;padding:12px;text-align:center}.shop-item.equipped{border-color:#279f72;background:#e0f9ec}.shop-icon{font-size:42px}.shop-item button{width:100%;padding:10px 5px;margin-top:8px;font-size:13px}.shop-item button:disabled{background:#d6deeb;color:#42536d}.closet{background:#e9f7ff;padding:12px;border-radius:14px;margin:10px 0;font-weight:800}.quest-note{font-size:13px;color:#53637a;line-height:1.6}.question{white-space:pre-line}.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);padding:12px 18px;background:#172b4a;color:white;border-radius:14px;z-index:10;box-shadow:0 5px 25px #0006;max-width:90%;text-align:center}
+</style><style>
+/* V3.1 child-first layout */
+.wrap{max-width:560px;padding:12px 12px 35px}.hero{padding:14px}.hero h1{font-size:25px}.stats{grid-template-columns:repeat(2,1fr);margin:10px 0}.panel{padding:16px;margin:10px 0}.levels{grid-template-columns:1fr;gap:9px}.level{min-height:60px;font-size:18px;text-align:center}.mode{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}.mode button{min-width:0;font-size:13px;padding:12px 5px;line-height:1.4}.primary{font-size:22px;min-height:64px;background:#ffcb50}.extras{margin:10px 0;border:2px solid #b8c9e5;background:#f4f8ff;border-radius:16px;color:#213a5b;overflow:hidden}.extras>summary{padding:17px 14px;font-weight:900;font-size:16px;cursor:pointer;list-style:none}.extras>summary::-webkit-details-marker{display:none}.extras[open]>summary{border-bottom:1px solid #d1ddf1}.extras>.panel{box-shadow:none;margin:0;background:transparent}.extras .panel{box-shadow:none}.writing-board{height:250px}.question{font-size:25px}.enemy{font-size:62px}button{min-height:46px}@media(max-width:370px){.mode button{font-size:12px}}
+</style><style>
+/* V3.2: child-first one-action home, no forced colors on pale panels */
+.kid-welcome{text-align:center;background:linear-gradient(145deg,#e8f8ff,#fff4cf);color:#183251;border-radius:20px;padding:18px 12px;margin-bottom:12px;border:2px solid #c5e9fa}
+.kid-welcome h2{font-size:20px;margin:5px 0}.kid-welcome p{margin:6px 0 10px;color:#34465d}.kid-hero{font-size:49px;line-height:1.4}.kid-progress{background:#fff;border-radius:20px;padding:9px;font-weight:750;color:#294c65}
+#home>.panel:first-child{padding:12px;background:transparent;border:0;box-shadow:none}#start{width:100%;min-height:76px;font-size:26px;border-radius:20px;box-shadow:0 6px 0 #9a6024;margin:8px 0 18px}
+#home>details.extras{margin:9px 0}#home>details.extras>summary{min-height:52px;display:flex;align-items:center;font-size:16px}
+.kid-settings .panel{padding:12px}.kid-settings .levels{grid-template-columns:repeat(3,minmax(0,1fr))}.kid-settings .level{font-size:13px;padding:7px 3px;min-height:62px}
+#game .writing-board{height:240px}#game .primary{min-height:58px}.write-note{line-height:1.5}
+@media(max-width:390px){.kid-hero{font-size:40px}.kid-welcome h2{font-size:18px}}
+</style><style>.storyline{background:#fff6df;color:#493513;border-radius:12px;padding:12px;margin:8px 0;font-weight:700}.source-line{font-size:12px;color:#4c607a;margin-top:12px;line-height:1.6}.source-line a{color:#235ba4}.learning-status{background:#eaf5ff;color:#23456b;border-radius:10px;padding:9px;margin-top:8px;font-size:13px}.quest-variant{font-size:13px;color:#465b7b;text-align:center;margin:6px 0}.game .panel{overflow:hidden}</style></head><body><main class="wrap"><header class="hero"><div>📜 ✨ 🏰 ✨ 📜</div><h1>字音字形大冒險</h1><div class="sub">寫 3 題，打敗怪獸，開啟寶箱！</div></header><div class="stats"><div class="stat">⭐ 等級<b id="levelStat">1</b></div><div class="stat">🪙 金幣<b id="coinStat">0</b></div></div><section id="home"><div class="panel"><div class="kid-welcome"><div class="kid-hero">🧙‍♀️ ⚔️ 👾</div><p>每關寫 3 題，答完就能開寶箱！資料只存在這台裝置的瀏覽器。</p><div class="kid-progress" id="kidProgress">🌳 字音森林 · 第 1 關</div></div><h2>準備出發</h2><button aria-label="開始冒險，手寫三題" class="primary" id="start">▶ 開始冒險</button><details class="extras kid-settings"><summary>⚙️ 大人設定／更多玩法</summary><div class="panel"><h2>🗺️ 選擇冒險地區</h2><div class="levels" id="levels"></div></div><h3>✍️ 練習種類</h3><div class="mode" id="modes"><button class="active" data-mode="mix">🎲 混合</button><button data-mode="sound">🔤 國字寫注音</button><button data-mode="shape">✏️ 注音寫國字</button></div><div class="panel" style="margin-top:12px"><h2>✍️ 三級手寫挑戰</h2><label for="compTier">選擇難度</label><select id="compTier" style="width:100%;padding:12px;margin:8px 0;background:#fff;color:#14233e;border-radius:10px"><option value="0">🌱 基礎</option><option value="1">📘 中等</option><option value="2">🔥 困難</option></select><div class="hint" id="compStatus"></div><label for="roundSize">每場題數</label><select id="roundSize" style="width:100%;padding:12px;margin:8px 0;background:#fff;color:#14233e;border-radius:10px"><option selected="" value="3">3 題｜冒險闖關</option><option value="5">5 題｜快速練習</option><option value="10">10 題｜標準挑戰</option><option value="20">20 題｜耐力挑戰</option><option value="100">100 題｜依可用題數</option></select><p class="hint">手指或滑鼠寫字；支援時自動辨識，不支援時可對照答案自評，並清楚標示自評。</p><button class="secondary" id="competition" style="width:100%;margin-top:9px">開始三級手寫挑戰</button><button class="secondary" id="bossChallenge" style="width:100%;margin-top:9px">👑 挑戰本級魔王（5 題）</button><p class="hint">本版為歷屆詞語改編與自編練習；不是官方原卷或已核定答案。未逐題審校，請勿用於正式評量。</p><details><summary>📎 題庫參考來源</summary><p><a href="https://www.wkes.ntpc.edu.tw/p/406-1000-9266,r88.php" rel="noopener" target="_blank">國小組歷屆題目與答案</a></p></details></div></details></div><details class="extras"><summary>🎒 我的勇者、寵物與商店</summary><div class="panel" id="shopPanel"><div class="row"><h2>🛍️ 勇者造型商店</h2><span class="pill" id="shopBalance">🪙 0</span></div><p class="quest-note">寫字賺金幣，永久收藏造型；已買的可以隨時換裝，不花真錢。</p><div class="closet" id="closet">🧙 我的勇者</div><div class="shop-grid" id="shopGrid"></div><h2 style="margin-top:18px">🐾 夥伴隊伍</h2><p class="quest-note">闖關解鎖夥伴，選擇一隻陪你冒險。</p><div class="shop-grid" id="petGrid"></div></div></details><details class="extras"><summary>🗺️ 看冒險地圖與每日任務</summary><div class="panel"><h2>🌈 文字王國冒險地圖</h2><div class="worldmap" id="worldMap"></div><div class="buddybox"><span class="buddyicon" id="buddyIcon">🥚</span><div style="flex:1"><b id="buddyName">神祕夥伴蛋</b><div class="play-note" id="buddyHint">完成挑戰蒐集星星，孵化小夥伴</div></div><button id="buddyBtn" type="button">夥伴圖鑑</button></div><div class="questline" id="dailyQuest">🎯 今日冒險任務</div><div class="play-note">每關只需寫 3 題！裝置若不支援辨識，可對照答案自行確認，繼續闖關。</div></div></details><details class="extras"><summary>📖 錯題本與學習紀錄</summary><div class="panel"><div class="row"><h2>📖 我的錯題本</h2><span class="pill" id="wrongCount">0 題</span></div><button class="secondary" id="review">複習錯題</button><div id="wrongList"></div><p class="quest-note">📅 錯題隔天優先複習；經系統辨識獨立答對兩次才列為已掌握。自評及提示後重寫不計入已驗證成績。</p></div><div class="panel"><h2>🏆 冒險成就</h2><div id="achievements"></div><div class="learning-status" id="qualitySummary"></div><div class="learning-status" id="learningDashboard"></div></div></details></section><section class="hidden" id="game"><div class="panel"><div class="row"><span class="pill" id="regionName"></span><span class="pill" id="roundText"></span></div><div class="fightbar"><span id="battleBuddy">🧙 小勇者</span><b id="comboLabel">✨ 連擊 0</b></div><div class="enemy" id="enemy">👾</div><div class="storyline" id="storyline" aria-live="polite"></div><div class="learning-status" id="petPower"></div><div class="mini-steps" id="stepDots"></div><div class="row"><b id="enemyName">文字怪獸</b><b id="hpText">HP 5 / 5</b></div><div class="progress"><div class="bar" id="hpBar" style="width:100%"></div></div><div class="question" id="question"></div><div class="hint" id="qtype"></div><div id="answers"></div><div aria-live="polite" class="result hidden" id="feedback"></div><button class="primary hidden" id="next">下一題 ➜</button><button class="secondary" id="exit" style="margin-top:12px;width:100%">↩️ 暫停，回首頁</button></div></section><section class="hidden" id="finish"><div class="panel" style="text-align:center"><div id="finishEmoji" style="font-size:60px">🏆</div><h2 id="finishTitle">挑戰完成</h2><p id="finishDesc"></p><div class="result" id="finishReward"></div><div class="reward-card" id="lootReward"></div><button class="primary" id="again">🚀 再玩一關</button><button class="secondary" id="back" style="width:100%;margin-top:9px">🗺️ 回首頁</button></div></section><div class="footer">V4.3 題庫去重與稽核測試版｜保留原有存檔｜手機手寫遊戲</div></main><script>
+'use strict';
+const bank=[
+// 初級
+{d:0,t:'sound',q:'「山」的正確注音是？',a:['ㄕㄢ','ㄙㄢ','ㄕㄤ'],c:0,e:'山：ㄕㄢ，一聲。'},
+{d:0,t:'sound',q:'「花」的正確注音是？',a:['ㄏㄨㄚ','ㄈㄨㄚ','ㄏㄨㄛ'],c:0,e:'花：ㄏㄨㄚ，一聲。'},
+{d:0,t:'sound',q:'「雨」的正確注音是？',a:['ㄩˊ','ㄩˇ','ㄨˇ'],c:1,e:'雨：ㄩˇ，三聲。'},
+{d:0,t:'sound',q:'「月」的正確注音是？',a:['ㄩㄝˋ','ㄩㄝˊ','ㄧㄝˋ'],c:0,e:'月：ㄩㄝˋ，四聲。'},
+{d:0,t:'sound',q:'「水」的正確注音是？',a:['ㄙㄨㄟˇ','ㄕㄨㄟˇ','ㄕㄨㄟˋ'],c:1,e:'水：ㄕㄨㄟˇ，三聲。'},
+{d:0,t:'shape',q:'哪一個字代表天空的「雲」？',a:['雲','雪','電'],c:0,e:'雲：天空中由小水滴或冰晶組成的可見集合體。'},
+{d:0,t:'shape',q:'「我喜歡看＿＿。」應填哪個字？',a:['書','輸','舒'],c:0,e:'看書的「書」，不是輸贏的「輸」。'},
+{d:0,t:'shape',q:'哪個詞語寫法正確？',a:['開心','開新','開芯'],c:0,e:'開心：形容快樂、高興。'},
+{d:0,t:'shape',q:'「一＿＿小貓」應填哪個字？',a:['支','隻','枝'],c:1,e:'一隻小貓：動物常用量詞「隻」。'},
+{d:0,t:'shape',q:'「太＿＿出來了」應填哪個字？',a:['陽','洋','揚'],c:0,e:'太陽的「陽」，部首是阜部（左耳旁）。'},
+// 中級
+{d:1,t:'sound',q:'「銀行」的「行」讀作？',a:['ㄒㄧㄥˊ','ㄏㄤˊ','ㄏㄥˊ'],c:1,e:'銀行：ㄧㄣˊ ㄏㄤˊ。'},
+{d:1,t:'sound',q:'「快樂」的「樂」讀作？',a:['ㄩㄝˋ','ㄌㄜˋ','ㄧㄠˋ'],c:1,e:'快樂的「樂」讀 ㄌㄜˋ。'},
+{d:1,t:'sound',q:'「重要」的「重」讀作？',a:['ㄓㄨㄥˋ','ㄔㄨㄥˊ','ㄓㄨㄥ'],c:0,e:'重要的「重」讀 ㄓㄨㄥˋ。'},
+{d:1,t:'sound',q:'「長大」的「長」讀作？',a:['ㄔㄤˊ','ㄓㄤˇ','ㄓㄤˋ'],c:1,e:'長大讀 ㄓㄤˇ ㄉㄚˋ。'},
+{d:1,t:'sound',q:'「音樂」的「樂」讀作？',a:['ㄌㄜˋ','ㄩㄝˋ','ㄧㄠˋ'],c:1,e:'音樂的「樂」讀 ㄩㄝˋ。'},
+{d:1,t:'shape',q:'哪個成語正確？',a:['迫不急待','迫不及待','迫不即待'],c:1,e:'迫不及待：急切得不能再等待。'},
+{d:1,t:'shape',q:'哪個詞語正確？',a:['再接再厲','再接再勵','再接再歷'],c:0,e:'再接再厲：繼續努力，毫不鬆懈。'},
+{d:1,t:'shape',q:'哪個詞語正確？',a:['一鼓作氣','一股作氣','一古作氣'],c:0,e:'一鼓作氣：趁著氣勢旺盛，一口氣完成。'},
+{d:1,t:'shape',q:'哪個詞語正確？',a:['專心至志','專心致志','專心緻志'],c:1,e:'專心致志：全心全意集中精神。'},
+{d:1,t:'shape',q:'哪個詞語正確？',a:['按步就班','按部就班','按部就搬'],c:1,e:'按部就班：依照一定的步驟、順序進行。'},
+// 高級
+{d:2,t:'sound',q:'「參差」的「差」讀作？',a:['ㄔㄚ','ㄘ','ㄔㄞ'],c:1,e:'參差：ㄘㄣ ㄘ，指不整齊、不一致。'},
+{d:2,t:'sound',q:'「龜裂」的「龜」讀作？',a:['ㄍㄨㄟ','ㄐㄩㄣ','ㄑㄧㄡ'],c:1,e:'龜裂：ㄐㄩㄣ ㄌㄧㄝˋ，指裂開許多細縫。'},
+{d:2,t:'sound',q:'「角色」的「角」讀作？',a:['ㄐㄧㄠˇ','ㄐㄩㄝˊ','ㄍㄜˋ'],c:1,e:'依臺灣國語辭典，角色讀 ㄐㄩㄝˊ ㄙㄜˋ。'},
+{d:2,t:'sound',q:'「剎那」的「剎」讀作？',a:['ㄕㄚ','ㄔㄚˋ','ㄘㄚˋ'],c:1,e:'剎那：ㄔㄚˋ ㄋㄚˋ，極短的時間。'},
+{d:2,t:'sound',q:'「粗獷」的「獷」讀作？',a:['ㄍㄨㄤˇ','ㄎㄨㄤˋ','ㄍㄨㄤˋ'],c:0,e:'粗獷：ㄘㄨ ㄍㄨㄤˇ。'},
+{d:2,t:'shape',q:'哪個成語正確？',a:['不脛而走','不逕而走','不徑而走'],c:0,e:'不脛而走：消息不待推廣便迅速傳開。'},
+{d:2,t:'shape',q:'哪個成語正確？',a:['相形見拙','相形見絀','相形見黜'],c:1,e:'相形見絀：比較之下顯得不足。'},
+{d:2,t:'shape',q:'哪個成語正確？',a:['飲鳩止渴','飲鴆止渴','飲酖止喝'],c:1,e:'飲鴆止渴：只求解決眼前困難，卻不顧嚴重後果。'},
+{d:2,t:'shape',q:'哪個成語正確？',a:['趨之若鶩','趨之若騖','驅之若鶩'],c:0,e:'趨之若鶩：形容許多人爭相追逐。'},
+{d:2,t:'shape',q:'哪個成語正確？',a:['甘之如飴','甘之如怡','甘之如貽'],c:0,e:'甘之如飴：心甘情願承受艱苦。'},
+// 高手
+{d:3,t:'sound',q:'「齟齬」的「齟」讀作？',a:['ㄐㄩˇ','ㄗㄨˇ','ㄑㄩˇ'],c:0,e:'齟齬：ㄐㄩˇ ㄩˇ，指意見不合。'},
+{d:3,t:'sound',q:'「踽踽獨行」的「踽」讀作？',a:['ㄩˇ','ㄐㄩˇ','ㄍㄡˇ'],c:1,e:'踽：ㄐㄩˇ；踽踽獨行形容孤單行走。'},
+{d:3,t:'sound',q:'「饕餮」的「餮」讀作？',a:['ㄊㄧㄝˋ','ㄊㄧㄠ','ㄉㄧㄝˊ'],c:0,e:'饕餮：ㄊㄠ ㄊㄧㄝˋ。'},
+{d:3,t:'sound',q:'「鞭笞」的「笞」讀作？',a:['ㄊㄞˊ','ㄔ','ㄙ'],c:1,e:'鞭笞：ㄅㄧㄢ ㄔ，指用鞭子責打。'},
+{d:3,t:'sound',q:'「睥睨」的「睥」讀作？',a:['ㄅㄧˋ','ㄆㄧˋ','ㄆㄧˊ'],c:0,e:'睥睨：ㄅㄧˋ ㄋㄧˋ，指斜眼看人。'},
+{d:3,t:'shape',q:'哪個成語正確？',a:['篳路藍縷','蓽路藍縷','篳路襤褸'],c:0,e:'篳路藍縷：形容創業艱辛。'},
+{d:3,t:'shape',q:'哪個成語正確？',a:['沆瀣一氣','沆洩一氣','沆瀉一氣'],c:0,e:'沆瀣一氣：比喻氣味相投的人勾結在一起，常含貶義。'},
+{d:3,t:'shape',q:'哪個成語正確？',a:['暴殄天物','暴珍天物','暴腆天物'],c:0,e:'暴殄天物：任意糟蹋物品。'},
+{d:3,t:'shape',q:'哪個成語正確？',a:['罄竹難書','磬竹難書','馨竹難書'],c:0,e:'罄竹難書：罪狀多得寫不完。'},
+{d:3,t:'shape',q:'哪個成語正確？',a:['鱗次櫛比','鱗次節比','麟次櫛比'],c:0,e:'鱗次櫛比：排列得密集而整齊。'}
+];
+// 將原本的選擇題轉為手寫輸入題；題目 ID 不變，以保留舊版錯題紀錄。
+const pairs=[
+[['山','ㄕㄢ'],['花','ㄏㄨㄚ'],['雨','ㄩˇ'],['月','ㄩㄝˋ'],['水','ㄕㄨㄟˇ'],['雲','ㄩㄣˊ'],['書','ㄕㄨ'],['開心','ㄎㄞ ㄒㄧㄣ'],['隻','ㄓ'],['太陽','ㄊㄞˋ ㄧㄤˊ']],
+[['銀行','ㄧㄣˊ ㄏㄤˊ'],['快樂','ㄎㄨㄞˋ ㄌㄜˋ'],['重要','ㄓㄨㄥˋ ㄧㄠˋ'],['長大','ㄓㄤˇ ㄉㄚˋ'],['音樂','ㄧㄣ ㄩㄝˋ'],['迫不及待','ㄆㄛˋ ㄅㄨˋ ㄐㄧˊ ㄉㄞˋ'],['再接再厲','ㄗㄞˋ ㄐㄧㄝ ㄗㄞˋ ㄌㄧˋ'],['一鼓作氣','ㄧ ㄍㄨˇ ㄗㄨㄛˋ ㄑㄧˋ'],['專心致志','ㄓㄨㄢ ㄒㄧㄣ ㄓˋ ㄓˋ'],['按部就班','ㄢˋ ㄅㄨˋ ㄐㄧㄡˋ ㄅㄢ']],
+[['參差','ㄘㄣ ㄘ'],['龜裂','ㄐㄩㄣ ㄌㄧㄝˋ'],['角色','ㄐㄩㄝˊ ㄙㄜˋ'],['剎那','ㄔㄚˋ ㄋㄚˋ'],['粗獷','ㄘㄨ ㄍㄨㄤˇ'],['不脛而走','ㄅㄨˋ ㄐㄧㄥˋ ㄦˊ ㄗㄡˇ'],['相形見絀','ㄒㄧㄤ ㄒㄧㄥˊ ㄐㄧㄢˋ ㄔㄨˋ'],['飲鴆止渴','ㄧㄣˇ ㄓㄣˋ ㄓˇ ㄎㄜˇ'],['趨之若鶩','ㄑㄩ ㄓ ㄖㄨㄛˋ ㄨˋ'],['甘之如飴','ㄍㄢ ㄓ ㄖㄨˊ ㄧˊ']],
+[['齟齬','ㄐㄩˇ ㄩˇ'],['踽踽獨行','ㄐㄩˇ ㄐㄩˇ ㄉㄨˊ ㄒㄧㄥˊ'],['饕餮','ㄊㄠ ㄊㄧㄝˋ'],['鞭笞','ㄅㄧㄢ ㄔ'],['睥睨','ㄅㄧˋ ㄋㄧˋ'],['篳路藍縷','ㄅㄧˋ ㄌㄨˋ ㄌㄢˊ ㄌㄩˇ'],['沆瀣一氣','ㄏㄤˋ ㄒㄧㄝˋ ㄧ ㄑㄧˋ'],['暴殄天物','ㄅㄠˋ ㄊㄧㄢˇ ㄊㄧㄢ ㄨˋ'],['罄竹難書','ㄑㄧㄥˋ ㄓㄨˊ ㄋㄢˊ ㄕㄨ'],['鱗次櫛比','ㄌㄧㄣˊ ㄘˋ ㄓˋ ㄅㄧˋ']]
+];
+let n=0;for(let d=0;d<4;d++)for(let j=0;j<10;j++){const q=bank[n++],pair=pairs[d][j];q.word=pair[0];q.zhuyin=pair[1];q.q=q.t==='sound'?pair[0]:pair[1];q.e=`${pair[0]}：${pair[1]}。`+q.e;}
+
+// 競賽延伸練習：參考110年全國語文競賽國小組公布的答案字詞，重新編寫單字手寫題；非原卷逐字重製。
+const competitionBank=[
+{d:0,t:'shape',q:'ㄇㄢˊ（鰻魚的「鰻」）',word:'鰻',zhuyin:'ㄇㄢˊ',e:'鰻魚的「鰻」：鰻。',source:'110年全國語文競賽國小組答案字詞延伸練習'},
+{d:1,t:'shape',q:'ㄆㄤˊ（螃蟹的「螃」）',word:'螃',zhuyin:'ㄆㄤˊ',e:'螃蟹的「螃」：螃。',source:'110年全國語文競賽國小組答案字詞延伸練習'},
+{d:2,t:'shape',q:'ㄓㄢˇ（一盞燈的「盞」）',word:'盞',zhuyin:'ㄓㄢˇ',e:'一盞燈的「盞」：盞。',source:'110年全國語文競賽國小組答案字詞延伸練習'},
+{d:3,t:'shape',q:'ㄐㄩ（小馬駒的「駒」）',word:'駒',zhuyin:'ㄐㄩ',e:'小馬駒的「駒」：駒。',source:'110年全國語文競賽國小組答案字詞延伸練習'},
+{d:0,t:'shape',q:'ㄑㄧㄠˋ（刀鞘的「鞘」）',word:'鞘',zhuyin:'ㄑㄧㄠˋ',e:'刀鞘的「鞘」：鞘。',source:'110年全國語文競賽國小組答案字詞延伸練習'},
+{d:1,t:'shape',q:'ㄓㄨㄢˋ（手釧的「釧」）',word:'釧',zhuyin:'ㄓㄨㄢˋ',e:'手釧的「釧」：釧。',source:'110年全國語文競賽國小組答案字詞延伸練習'},
+{d:2,t:'shape',q:'ㄜˋ（上顎的「顎」）',word:'顎',zhuyin:'ㄜˋ',e:'上顎的「顎」：顎。',source:'110年全國語文競賽國小組答案字詞延伸練習'},
+{d:3,t:'shape',q:'ㄜˋ（鱷魚的「鱷」）',word:'鱷',zhuyin:'ㄜˋ',e:'鱷魚的「鱷」：鱷。',source:'110年全國語文競賽國小組答案字詞延伸練習'},
+{d:0,t:'shape',q:'ㄌㄨˊ（草廬的「廬」）',word:'廬',zhuyin:'ㄌㄨˊ',e:'草廬的「廬」：廬。',source:'110年全國語文競賽國小組答案字詞延伸練習'},
+{d:1,t:'shape',q:'ㄐㄧㄣˋ（朝覲的「覲」）',word:'覲',zhuyin:'ㄐㄧㄣˋ',e:'朝覲的「覲」：覲。',source:'110年全國語文競賽國小組答案字詞延伸練習'},
+{d:2,t:'shape',q:'ㄨㄣˇ（紊亂的「紊」）',word:'紊',zhuyin:'ㄨㄣˇ',e:'紊亂的「紊」：紊。',source:'110年全國語文競賽國小組答案字詞延伸練習'},
+{d:0,t:'sound',q:'鰻（鰻魚的「鰻」）',word:'鰻',zhuyin:'ㄇㄢˊ',e:'鰻魚的「鰻」：ㄇㄢˊ。',source:'110年全國語文競賽國小組答案字詞延伸練習'},
+{d:1,t:'sound',q:'螃（螃蟹的「螃」）',word:'螃',zhuyin:'ㄆㄤˊ',e:'螃蟹的「螃」：ㄆㄤˊ。',source:'110年全國語文競賽國小組答案字詞延伸練習'},
+{d:2,t:'sound',q:'盞（一盞燈的「盞」）',word:'盞',zhuyin:'ㄓㄢˇ',e:'一盞燈的「盞」：ㄓㄢˇ。',source:'110年全國語文競賽國小組答案字詞延伸練習'},
+{d:3,t:'sound',q:'駒（小馬駒的「駒」）',word:'駒',zhuyin:'ㄐㄩ',e:'小馬駒的「駒」：ㄐㄩ。',source:'110年全國語文競賽國小組答案字詞延伸練習'},
+{d:0,t:'sound',q:'鞘（刀鞘的「鞘」）',word:'鞘',zhuyin:'ㄑㄧㄠˋ',e:'刀鞘的「鞘」：ㄑㄧㄠˋ。',source:'110年全國語文競賽國小組答案字詞延伸練習'},
+{d:1,t:'sound',q:'釧（手釧的「釧」）',word:'釧',zhuyin:'ㄓㄨㄢˋ',e:'手釧的「釧」：ㄓㄨㄢˋ。',source:'110年全國語文競賽國小組答案字詞延伸練習'},
+{d:2,t:'sound',q:'顎（上顎的「顎」）',word:'顎',zhuyin:'ㄜˋ',e:'上顎的「顎」：ㄜˋ。',source:'110年全國語文競賽國小組答案字詞延伸練習'},
+{d:3,t:'sound',q:'鱷（鱷魚的「鱷」）',word:'鱷',zhuyin:'ㄜˋ',e:'鱷魚的「鱷」：ㄜˋ。',source:'110年全國語文競賽國小組答案字詞延伸練習'},
+{d:0,t:'sound',q:'廬（草廬的「廬」）',word:'廬',zhuyin:'ㄌㄨˊ',e:'草廬的「廬」：ㄌㄨˊ。',source:'110年全國語文競賽國小組答案字詞延伸練習'},
+{d:1,t:'sound',q:'覲（朝覲的「覲」）',word:'覲',zhuyin:'ㄐㄧㄣˋ',e:'朝覲的「覲」：ㄐㄧㄣˋ。',source:'110年全國語文競賽國小組答案字詞延伸練習'},
+{d:2,t:'sound',q:'紊（紊亂的「紊」）',word:'紊',zhuyin:'ㄨㄣˇ',e:'紊亂的「紊」：ㄨㄣˇ。',source:'110年全國語文競賽國小組答案字詞延伸練習'},
+];
+competitionBank.forEach(q=>{q.group="國小";q.year="110";q.provenance="延伸練習（非原題）";bank.push(q)});
+// 國中組新增：以公開的100年全國語文競賽國中組題答詞彙為線索重新編寫的練習題，並非原卷逐字轉載。
+const juniorPractice=[
+ ['牛腩','腩','ㄋㄢˇ','牛＿＿','牛腩的「腩」'],
+ ['弔唁','唁','ㄧㄢˋ','弔＿＿','弔唁的「唁」'],
+ ['熟諳','諳','ㄢ','熟＿＿','熟諳的「諳」'],
+ ['月暈','暈','ㄩㄣˋ','月＿＿','月暈的「暈」'],
+ ['迸裂','迸','ㄅㄥˋ','＿＿裂','迸裂的「迸」'],
+ ['斗筲','筲','ㄕㄠ','斗＿＿','斗筲的「筲」']
+];
+for(const [term,word,zhuyin,blank,context] of juniorPractice){
+ const base={d:2,word,zhuyin,group:'國中',year:'100',source:'100年全國語文競賽國中組題答詞彙延伸練習',provenance:'延伸練習（非原題）',sourceUrl:'https://lle.ntcu.edu.tw/files/users/42/114-1%E5%9C%8B%E8%AA%9E%E5%AD%97%E9%9F%B3%E5%AD%97%E5%BD%A2%E9%A1%8C%E5%BA%AB%28100-110%29.pdf'};
+ bank.push({...base,t:'shape',q:blank+'（請寫出「'+zhuyin+'」對應的國字）',e:context+'：'+word+'。'});
+ bank.push({...base,t:'sound',q:term+'（請寫「'+word+'」的注音）',e:context+'：'+zhuyin+'。'});
+}
+
+// 國小組補充：39組×字音/字形2題，共78題，為自編競賽形式練習，非歷屆原題。
+const primaryOriginalPairs = [["誠實", "誠", "ㄔㄥˊ"], ["勇敢", "勇", "ㄩㄥˇ"], ["謙虛", "謙", "ㄑㄧㄢ"], ["尊敬", "尊", "ㄗㄨㄣ"], ["責任", "責", "ㄗㄜˊ"], ["珍惜", "惜", "ㄒㄧˊ"], ["勤勞", "勤", "ㄑㄧㄣˊ"], ["整潔", "潔", "ㄐㄧㄝˊ"], ["鼓勵", "勵", "ㄌㄧˋ"], ["欣賞", "賞", "ㄕㄤˇ"], ["觀察", "察", "ㄔㄚˊ"], ["探索", "索", "ㄙㄨㄛˇ"], ["環境", "環", "ㄏㄨㄢˊ"], ["資源", "資", "ㄗ"], ["節約", "約", "ㄩㄝ"], ["閱讀", "閱", "ㄩㄝˋ"], ["理解", "解", "ㄐㄧㄝˇ"], ["溝通", "溝", "ㄍㄡ"], ["合作", "合", "ㄏㄜˊ"], ["分享", "享", "ㄒㄧㄤˇ"], ["溫暖", "暖", "ㄋㄨㄢˇ"], ["燦爛", "燦", "ㄘㄢˋ"], ["遼闊", "遼", "ㄌㄧㄠˊ"], ["茂盛", "茂", "ㄇㄠˋ"], ["清澈", "澈", "ㄔㄜˋ"], ["瀑布", "瀑", "ㄆㄨˋ"], ["蝴蝶", "蝶", "ㄉㄧㄝˊ"], ["蜻蜓", "蜓", "ㄊㄧㄥˊ"], ["螞蟻", "蟻", "ㄧˇ"], ["烏龜", "龜", "ㄍㄨㄟ"], ["鯨魚", "鯨", "ㄐㄧㄥ"], ["海豚", "豚", "ㄊㄨㄣˊ"], ["稻穗", "穗", "ㄙㄨㄟˋ"], ["麥田", "麥", "ㄇㄞˋ"], ["橋梁", "橋", "ㄑㄧㄠˊ"], ["隧道", "隧", "ㄙㄨㄟˋ"], ["宇宙", "宙", "ㄓㄡˋ"], ["星辰", "辰", "ㄔㄣˊ"], ["黎明", "黎", "ㄌㄧˊ"]];
+for(const [term,word,zhuyin] of primaryOriginalPairs){
+ const tier=Math.min(3,Math.floor(primaryOriginalPairs.findIndex(p=>p[0]===term)/10));
+ const base={d:tier,word,zhuyin,group:'國小',year:'自編',source:'國小組競賽形式自編練習',provenance:'自編練習（非歷屆原題）'};
+ bank.push({...base,t:'shape',q:term.replace(word,'□')+'（請依注音「'+zhuyin+'」手寫缺少的國字）',e:term+'的「'+word+'」：'+zhuyin+'。'});
+ bank.push({...base,t:'sound',q:term+'（請手寫「'+word+'」的注音）',e:term+'的「'+word+'」：'+zhuyin+'。'});
+}
+// V2.0 新增自編手寫練習；保留舊題庫順序，避免既有錯題 ID 改變。
+const expandedPairs = [
+  [['早晨', '晨', 'ㄔㄣˊ'], ['傍晚', '傍', 'ㄅㄤˋ'], ['森林', '森', 'ㄙㄣ'], ['草原', '原', 'ㄩㄢˊ'], ['湖泊', '湖', 'ㄏㄨˊ'], ['河流', '河', 'ㄏㄜˊ'], ['農夫', '農', 'ㄋㄨㄥˊ'], ['醫生', '醫', 'ㄧ'], ['老師', '師', 'ㄕ'], ['朋友', '朋', 'ㄆㄥˊ'], ['家庭', '庭', 'ㄊㄧㄥˊ'], ['學校', '校', 'ㄒㄧㄠˋ'], ['健康', '健', 'ㄐㄧㄢˋ'], ['快樂', '快', 'ㄎㄨㄞˋ'], ['希望', '希', 'ㄒㄧ'], ['努力', '努', 'ㄋㄨˇ'], ['禮貌', '禮', 'ㄌㄧˇ'], ['安全', '安', 'ㄢ'], ['文化', '文', 'ㄨㄣˊ'], ['歷史', '歷', 'ㄌㄧˋ']],
+  [['猶豫', '猶', 'ㄧㄡˊ'], ['猶豫', '豫', 'ㄩˋ'], ['寬敞', '敞', 'ㄔㄤˇ'], ['倔強', '倔', 'ㄐㄩㄝˊ'], ['倔強', '強', 'ㄐㄧㄤˋ'], ['勉強', '勉', 'ㄇㄧㄢˇ'], ['尷尬', '尷', 'ㄍㄢ'], ['尷尬', '尬', 'ㄍㄚˋ'], ['徘徊', '徘', 'ㄆㄞˊ'], ['徘徊', '徊', 'ㄏㄨㄞˊ'], ['酬謝', '酬', 'ㄔㄡˊ'], ['惆悵', '悵', 'ㄔㄤˋ'], ['憧憬', '憧', 'ㄔㄨㄥ'], ['憧憬', '憬', 'ㄐㄧㄥˇ'], ['崎嶇', '崎', 'ㄑㄧˊ'], ['崎嶇', '嶇', 'ㄑㄩ'], ['斟酌', '斟', 'ㄓㄣ'], ['斟酌', '酌', 'ㄓㄨㄛˊ'], ['謹慎', '謹', 'ㄐㄧㄣˇ'], ['謹慎', '慎', 'ㄕㄣˋ']],
+  [['魑魅', '魑', 'ㄔ'], ['魑魅', '魅', 'ㄇㄟˋ'], ['魍魎', '魍', 'ㄨㄤˇ'], ['魍魎', '魎', 'ㄌㄧㄤˇ'], ['齷齪', '齷', 'ㄨㄛˋ'], ['齷齪', '齪', 'ㄔㄨㄛˋ'], ['饕餮', '饕', 'ㄊㄠ'], ['囹圄', '囹', 'ㄌㄧㄥˊ'], ['囹圄', '圄', 'ㄩˇ'], ['踟躕', '踟', 'ㄔˊ'], ['踟躕', '躕', 'ㄔㄨˊ'], ['嶙峋', '嶙', 'ㄌㄧㄣˊ'], ['嶙峋', '峋', 'ㄒㄩㄣˊ'], ['齟齬', '齬', 'ㄩˇ'], ['鴟鴞', '鴟', 'ㄔ'], ['鴟鴞', '鴞', 'ㄒㄧㄠ'], ['踉蹌', '踉', 'ㄌㄧㄤˋ'], ['踉蹌', '蹌', 'ㄑㄧㄤˋ'], ['璀璨', '璀', 'ㄘㄨㄟˇ'], ['璀璨', '璨', 'ㄘㄢˋ']],
+];
+expandedPairs.forEach((items,tier)=>items.forEach(([term,word,zhuyin])=>{
+ const base={d:tier,word,zhuyin,year:'自編',source:'V2.0 自編手寫練習',provenance:'自編練習（非歷屆競賽原題）'};
+ bank.push({...base,t:'shape',q:term.replace(word,'□')+'（注音：'+zhuyin+'）',e:term+'的「'+word+'」：'+zhuyin+'。'});
+ bank.push({...base,t:'sound',q:term+'（請寫「'+word+'」的注音）',e:term+'的「'+word+'」：'+zhuyin+'。'});
+}));
+
+// V2.2 四字語境手寫題：每題只寫指定的一字或其注音，非官方原題。
+const fourCharacterPairs=[["一鼓作氣", "氣", "ㄑㄧˋ", 0], ["全力以赴", "赴", "ㄈㄨˋ", 0], ["自言自語", "語", "ㄩˇ", 0], ["大吃一驚", "驚", "ㄐㄧㄥ", 0], ["四面八方", "方", "ㄈㄤ", 0], ["一心一意", "意", "ㄧˋ", 0], ["五花八門", "門", "ㄇㄣˊ", 0], ["七上八下", "下", "ㄒㄧㄚˋ", 0], ["一目了然", "然", "ㄖㄢˊ", 0], ["半途而廢", "廢", "ㄈㄟˋ", 0], ["畫蛇添足", "添", "ㄊㄧㄢ", 0], ["守株待兔", "株", "ㄓㄨ", 0], ["亡羊補牢", "牢", "ㄌㄠˊ", 0], ["井底之蛙", "蛙", "ㄨㄚ", 0], ["刻舟求劍", "劍", "ㄐㄧㄢˋ", 0], ["迫不及待", "迫", "ㄆㄛˋ", 1], ["再接再厲", "厲", "ㄌㄧˋ", 1], ["按部就班", "部", "ㄅㄨˋ", 1], ["不知所措", "措", "ㄘㄨㄛˋ", 1], ["一籌莫展", "籌", "ㄔㄡˊ", 1], ["名列前茅", "茅", "ㄇㄠˊ", 1], ["相形見絀", "絀", "ㄔㄨˋ", 1], ["不脛而走", "脛", "ㄐㄧㄥˋ", 1], ["川流不息", "息", "ㄒㄧˊ", 1], ["趨之若鶩", "鶩", "ㄨˋ", 1], ["無與倫比", "倫", "ㄌㄨㄣˊ", 1], ["義不容辭", "辭", "ㄘˊ", 1], ["循序漸進", "循", "ㄒㄩㄣˊ", 1], ["出類拔萃", "萃", "ㄘㄨㄟˋ", 1], ["飲鴆止渴", "鴆", "ㄓㄣˋ", 2], ["暴殄天物", "殄", "ㄊㄧㄢˇ", 2], ["沆瀣一氣", "瀣", "ㄒㄧㄝˋ", 2], ["鳳毛麟角", "麟", "ㄌㄧㄣˊ", 2], ["鞭辟入裡", "辟", "ㄆㄧˋ", 2], ["醍醐灌頂", "醍", "ㄊㄧˊ", 2], ["罄竹難書", "罄", "ㄑㄧㄥˋ", 2], ["觥籌交錯", "觥", "ㄍㄨㄥ", 2], ["篳路藍縷", "篳", "ㄅㄧˋ", 2], ["櫛風沐雨", "櫛", "ㄐㄧㄝˊ", 2], ["踽踽獨行", "踽", "ㄐㄩˇ", 2], ["饕餮盛宴", "餮", "ㄊㄧㄝˋ", 2], ["魑魅魍魎", "魑", "ㄔ", 2], ["鷸蚌相爭", "鷸", "ㄩˋ", 2], ["囫圇吞棗", "囫", "ㄏㄨˊ", 2]];
+for(const [term,word,zhuyin,tier] of fourCharacterPairs){
+ const position=term.indexOf(word);
+ if([...term].length!==4||position<0)throw Error('四字題庫資料錯誤：'+term);
+ const base={d:tier,word,zhuyin,term,fourChar:true,source:'四字成語自編練習',provenance:'自編練習（非官方歷屆原題）'};
+ bank.push({...base,t:'shape',q:term+'｜請寫「'+zhuyin+'」的國字',prompt:term.slice(0,position)+'□'+term.slice(position+word.length)+'\n提示注音：'+zhuyin,e:'完整詞語：'+term+'。'});
+ bank.push({...base,t:'sound',q:term+'｜請寫「'+word+'」的注音',prompt:term+'\n請寫「'+word+'」的注音',e:'「'+word+'」讀作 '+zhuyin+'。'});
+}
+
+// 依員山國小所收錄「102年全國語文競賽國小學生組」試卷中四字詞語編製的練習題。
+// 不是原卷逐字重製；保留原詞語及來源，指定單字與注音為遊戲改編。
+const yeses102Pairs=[["裹足不前", "裹", "ㄍㄨㄛˇ", 1], ["出類拔萃", "萃", "ㄘㄨㄟˋ", 1], ["貫徹始終", "徹", "ㄔㄜˋ", 1], ["精神抖擻", "擻", "ㄙㄡˇ", 2], ["百戰不殆", "殆", "ㄉㄞˋ", 2], ["半途而廢", "廢", "ㄈㄟˋ", 0], ["耳濡目染", "濡", "ㄖㄨˊ", 1], ["推波助瀾", "瀾", "ㄌㄢˊ", 1], ["小巧玲瓏", "瓏", "ㄌㄨㄥˊ", 1], ["雷霆萬鈞", "鈞", "ㄐㄩㄣ", 2], ["再接再厲", "厲", "ㄌㄧˋ", 1], ["夙夜匪懈", "夙", "ㄙㄨˋ", 2], ["大快朵頤", "頤", "ㄧˊ", 2], ["未雨綢繆", "繆", "ㄇㄡˊ", 2], ["誤入歧途", "歧", "ㄑㄧˊ", 1], ["語焉不詳", "焉", "ㄧㄢ", 2], ["白駒過隙", "駒", "ㄐㄩ", 1], ["如願以償", "償", "ㄔㄤˊ", 1], ["優柔寡斷", "寡", "ㄍㄨㄚˇ", 1], ["星羅棋布", "羅", "ㄌㄨㄛˊ", 1]];
+for(const [term,word,zhuyin,tier] of yeses102Pairs){
+ if([...term].length!==4||!term.includes(word))throw Error('題庫四字驗證失敗：'+term);
+ const position=term.indexOf(word);
+ const base={d:tier,word,zhuyin,term,fourChar:true,year:'102',source:'102年全國語文競賽國小學生組試卷詞語',provenance:'依歷屆試卷詞語改編（非原題）',sourceUrl:'https://www.yeses.ilc.edu.tw/wp-content/uploads/sites/890/2025/10/102%E5%B0%8F%E7%94%9F%E7%B5%84%E5%85%A8%E5%9C%8B%E8%B3%BD%E9%A1%8C%E7%9B%AE.pdf'};
+ bank.push({...base,t:'shape',q:term+'｜請寫「'+zhuyin+'」的國字',prompt:term.slice(0,position)+'□'+term.slice(position+1)+'\n提示注音：'+zhuyin,e:'完整詞語：'+term+'。'});
+ bank.push({...base,t:'sound',q:term+'｜請寫「'+word+'」的注音',prompt:term+'\n請寫「'+word+'」的注音',e:'「'+word+'」讀作 '+zhuyin+'。'});
+}
+
+// V2.4：取材自民國100年全國語文競賽國小組字形試卷的四字語境。
+// 題型改編為單字手寫；非原題整頁重製。只新增於既有題庫尾端，維持舊題索引。
+const competition100Pairs=[
+ ["傲然屹立","屹","ㄧˋ",1],["甘拜下風","拜","ㄅㄞˋ",0],
+ ["逐鹿中原","鹿","ㄌㄨˋ",1],["倖免於難","倖","ㄒㄧㄥˋ",1],
+ ["刻苦耐勞","刻","ㄎㄜˋ",0],["斷壁頹垣","垣","ㄩㄢˊ",2],
+ ["迥然相異","迥","ㄐㄩㄥˇ",2],["共襄盛舉","襄","ㄒㄧㄤ",1],
+ ["案牘勞形","牘","ㄉㄨˊ",2],["文采斐然","斐","ㄈㄟˇ",1],
+ ["有志難酬","酬","ㄔㄡˊ",1],["淋漓酣暢","酣","ㄏㄢ",2],
+ ["恪守不渝","恪","ㄎㄜˋ",2],["按圖索驥","驥","ㄐㄧˋ",2],
+ ["戛然而止","戛","ㄐㄧㄚˊ",2],["嘉言懿行","懿","ㄧˋ",2],
+ ["思慮縝密","縝","ㄓㄣˇ",2],["獐頭鼠目","獐","ㄓㄤ",2]
+];
+for(const [term,word,zhuyin,tier] of competition100Pairs){
+ if([...term].length!==4||[...term].filter(x=>x===word).length!==1||!zhuyin.startsWith('ㄧ')&&!/^[ㄅ-ㄩ]/.test(zhuyin))throw Error('新增題庫格式錯誤：'+term);
+ const pos=term.indexOf(word);
+ const base={d:tier,word,zhuyin,term,fourChar:true,year:'100',source:'100年全國語文競賽國小學生組字形試卷',provenance:'依歷屆試卷詞語改編（非原題）',sourceUrl:'https://www.scribd.com/document/777927815/112%E5%AD%97%E9%9F%B3%E5%AD%97%E5%BD%A2%E9%A1%8C%E5%BA%AB-100-110'};
+ bank.push({...base,t:'shape',q:term+'｜請手寫「'+zhuyin+'」的國字',prompt:term.slice(0,pos)+'□'+term.slice(pos+1)+'\n提示注音：'+zhuyin,e:'完整詞語：'+term+'。'});
+ bank.push({...base,t:'sound',q:term+'｜請手寫「'+word+'」的注音',prompt:term+'\n請寫「'+word+'」的注音',e:'「'+word+'」讀作 '+zhuyin+'。'});
+}
+
+function normalizeAnswer(v,t){let x=String(v).normalize('NFKC').replace(/[\s　，,。．.、·・-]/g,'').trim();if(t==='sound')return x.replace(/ˉ/g,'');return x;}
+// 題庫稽核：保留舊題索引以遷移既有存檔；僅將四字詞語納入正式出題。
+const playableCandidates=bank.map((q,i)=>({...q,id:i,stableId:'q4:'+encodeURIComponent([q.term||'',q.word||'',q.zhuyin||'',q.t].join('|'))})).filter(q=>q.fourChar&&[...q.term].length===4&&q.term.includes(q.word)&&q.zhuyin&&q.prompt&&['sound','shape'].includes(q.t));
+// 去重只影響抽題，不更動 bank 原始索引或已存在的玩家資料。
+const seenQuestionIds=new Set();
+const playableBank=playableCandidates.filter(q=>{if(seenQuestionIds.has(q.stableId))return false;seenQuestionIds.add(q.stableId);return true;});
+const qualityReport={all:bank.length,playable:playableBank.length,invalid:bank.filter(q=>q.fourChar&&!playableBank.some(x=>x.id===bank.indexOf(q))).length,missingSource:playableBank.filter(q=>!q.source||!q.sourceUrl).length};
+const duplicatePlayableIds=playableCandidates.length-playableBank.length;
+const questionByStable=Object.fromEntries(playableBank.map(q=>[q.stableId,q]));
+const questionByLegacy=Object.fromEntries(playableBank.map(q=>[String(q.id),q]));
+const KEY='ziyin_zixing_adventure_v1';let state={exp:0,coins:0,best:0,unlocked:0,clears:[0,0,0,0],wrong:{},total:0,recent:[]};try{let saved=JSON.parse(localStorage.getItem(KEY));if(saved&&typeof saved==='object'){state={...state,...saved,wrong:saved.wrong||{},clears:Array.isArray(saved.clears)?saved.clears:[0,0,0,0],recent:Array.isArray(saved.recent)?saved.recent:[]}}}catch(e){};
+const $=id=>document.getElementById(id), names=['🌱 基礎森林','📘 中等小鎮','🔥 困難古城'];let diff=0,mode='mix',session=null;
+const tierNames=['基礎','中等','困難'];
+const V41KEY='ziyin_zixing_v41_progress';
+let v41={verifiedStreak:0,verifiedAttempts:0,selfAttempts:0,assistedAttempts:0,verifiedCorrect:0,stories:0};
+try{const v=JSON.parse(localStorage.getItem(V41KEY));if(v&&typeof v==='object')v41={...v41,...v}}catch(e){}
+function saveV41(){try{localStorage.setItem(V41KEY,JSON.stringify(v41))}catch(e){}}
+const STORIES=[['🌲 森林的文字不見了！請幫精靈找回魔法。','🗝️ 找回森林鑰匙','✨ 修復古老的文字石碑'],['🏘️ 成語小鎮的鐘停了！用文字魔法重新啟動。','🦊 狐狸守著一張神祕卷軸','🎁 解開寶箱的成語密碼'],['🏰 古城被文字護盾封住了！','🐉 龍王正在考驗勇者','👑 修復最後一座文字城門']];
+function adaptiveTier(){const unlocked=Math.min(2,Math.max(0,state.unlocked));return Math.min(unlocked,Math.max(0,Math.floor(v41.verifiedStreak/6)));}
+function reportV41(){const el=$('learningDashboard');if(!el)return;const due=playableBank.filter(q=>reviewDue(q)).length;el.textContent=`📈 學習紀錄｜瀏覽器辨識獨立答對 ${v41.verifiedCorrect} 次（尚未人工覆核）｜自行核對 ${v41.selfAttempts} 次｜提示後完成 ${v41.assistedAttempts} 次｜到期複習 ${due} 題。自評不作為升級證據。`;}
+
+// 舊版 d=3 的題目併入困難；保留原陣列順序，避免舊存檔錯題 ID 失效。
+function effectiveTier(q){return Math.min(2,q.d)}
+function competitionCount(tier){return playableBank.filter(q=>effectiveTier(q)===tier&&(mode==='mix'||q.t===mode)).length}
+function updateCompetition(){
+ const t=Number($('compTier').value),n=competitionCount(t);
+ $('compStatus').textContent=`${tierNames[t]}：目前模式可練習 ${n} 題（自編及競賽延伸題）`;
+ $('competition').disabled=!n;$('bossChallenge').disabled=!n;
+ $('competition').textContent=n?`✍️ 開始${tierNames[t]}手寫挑戰（題庫 ${n} 題）`:'此難度暫無題目';
+}
+$('compTier').addEventListener('change',updateCompetition);
+function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}}function stats(){ $('levelStat').textContent=Math.floor(state.exp/100)+1;$('coinStat').textContent=state.coins;}
+function show(id){['home','game','finish'].forEach(x=>$(x).classList.toggle('hidden',x!==id));window.scrollTo(0,0)}
+function render(){stats();const qr=$('qualitySummary');if(qr)qr.textContent=`📚 可用四字題 ${qualityReport.playable} 題｜未附可直接查閱來源網址 ${qualityReport.missingSource} 題｜重複題目 ID ${duplicatePlayableIds} 筆｜未完成逐題權威字典校對，請勿作為正式競賽判分依據。`; reportV41();const kp=$('kidProgress');if(kp)kp.textContent=['🌳 字音森林','🏡 成語小鎮','🏰 困難古城'][Math.min(state.unlocked,2)]+' · 已通關 '+(state.clears[Math.min(state.unlocked,2)]||0)+' 次';$('levels').replaceChildren();names.forEach((name,i)=>{let b=document.createElement('button');b.className='level'+(diff===i?' active':'');b.disabled=i>state.unlocked;b.textContent=name+(i>state.unlocked?' 🔒':'')+'\n'+(state.clears[i]||0)+' 次通關';b.style.whiteSpace='pre-line';b.onclick=()=>{diff=i;render();renderFun()};$('levels').append(b)});let wrong=playableBank.filter(q=>needsReview(q));$('wrongCount').textContent=wrong.length+' 題';$('review').disabled=!wrong.length;$('wrongList').replaceChildren();wrong.slice(0,6).forEach(q=>{let p=document.createElement('div');p.className='log';p.textContent=(q.prompt||q.q)+'（需獨立答對 2 次，已完成 '+(recordFor(q)?.verified||0)+' 次）';$('wrongList').append(p)});let ach=[['🌟 初次冒險',state.total>=1],['🛡️ 森林守護者',state.clears[0]>0],['⚔️ 國字勇者',state.clears[1]>0],['🏆 成語大師',state.clears[2]>0],['👑 魔王挑戰者',state.best>=5],['💎 百分達人',state.exp>=100]];$('achievements').textContent=ach.map(([n,ok])=>(ok?'✅ ':'🔒 ')+n).join('　');}
+$('modes').querySelectorAll('button').forEach(b=>b.onclick=()=>{mode=b.dataset.mode;$('modes').querySelectorAll('button').forEach(x=>x.classList.toggle('active',x===b));updateCompetition()});
+function shuffle(arr){let a=[...arr];for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+const LEARNKEY='ziyin_zixing_learning_v33';
+let learning={items:{}};try{let old=JSON.parse(localStorage.getItem(LEARNKEY));if(old&&old.items)learning=old}catch(e){}
+function saveLearning(){try{localStorage.setItem(LEARNKEY,JSON.stringify(learning))}catch(e){}}
+function lessonId(q){return q.stableId}
+// V3.3 學習紀錄以題庫位置作 ID：首次載入轉換為永久 ID，保留舊欄位不刪。
+if(!learning.migratedV4){for(const [key,entry] of Object.entries(learning.items)){const q=questionByLegacy[key];if(q&&!learning.items[q.stableId])learning.items[q.stableId]={...entry};}learning.migratedV4=true;saveLearning()}
+function recordFor(q){return learning.items[lessonId(q)]||null}
+function mastery(q){const r=recordFor(q);return !!(r&&r.verified>=2&&r.due>0)}
+function reviewDue(q){const r=recordFor(q);return !!(r&&r.misses>0&&!mastery(q)&&r.due<=Date.now())}
+function lessonSource(q){return [q.source||'自編四字詞語練習',q.year?'民國'+q.year+'年':'',q.provenance||'練習題，非原題'].filter(Boolean).join('｜')}
+
+function recordAttempt(q,kind,independent){
+ const k=lessonId(q),now=Date.now();let r=learning.items[k]||{misses:0,verified:0,due:0,history:[],status:'new'};
+ r.history=Array.isArray(r.history)?r.history:[];
+ if(kind==='miss'){r.misses++;r.verified=0;r.due=now+86400000;r.status='practice';state.wrong[q.id]=(state.wrong[q.id]||0)+1;}
+ else if(independent){r.verified=(r.verified||0)+1;r.status='verified';r.due=now+([0,86400000,3*86400000,7*86400000,14*86400000][Math.min(r.verified,4)]);if(r.verified>=2)delete state.wrong[q.id];}
+ else{r.status=kind==='assisted'?'assisted':'self';if(r.misses>0){r.due=Math.min(r.due||Infinity,now+86400000)} }
+ r.history.push({at:now,kind,verified:!!independent});r.history=r.history.slice(-30);learning.items[k]=r;saveLearning();save();
+}
+function needsReview(q){const r=recordFor(q);return !!((r&&r.misses>0&&!mastery(q))||state.wrong[q.id]>0)}
+function start(review=false,competition=false,boss=false){
+ let tier=review?diff:(competition?Number($('compTier').value):adaptiveTier());
+ let pool=playableBank.filter(q=>(review?needsReview(q):effectiveTier(q)===tier&&(mode==='mix'||q.t===mode))); // 未審校題只供練習，絕不宣稱官方驗證
+ if(!pool.length){alert('目前沒有可用題目或錯題。');return}
+ let desired=boss?5:(competition?(Number($('roundSize').value)||3):3);
+ let fresh=pool.filter(q=>!state.recent.includes(q.id)),old=pool.filter(q=>state.recent.includes(q.id));
+ let due=pool.filter(q=>reviewDue(q));
+ let others=[...shuffle(fresh),...shuffle(old)].filter(q=>!due.some(d=>d.id===q.id));
+ let questions=[...shuffle(due),...others].slice(0,Math.min(desired,pool.length));if(boss&&questions.length<5){alert('魔王關至少需要 5 題，請先選擇其他難度或模式。');return}
+ state.recent=[...state.recent,...questions.map(q=>q.id)].slice(-Math.min(70,Math.max(1,bank.length-1)));save();
+ session={questions,index:0,correct:0,streak:0,review,competition,answered:false,boss,tier,unscored:0,earnedExp:0,earnedCoins:0,assisted:0,independent:0,petHintUsed:false};
+ $('regionName').textContent=review?'📖 錯題複習':(boss?'👑 '+tierNames[tier]+'魔王':tierNames[tier]+'手寫挑戰');
+ $('enemyName').textContent=review?'複習精靈':boss?'護盾龍王':['森林史萊姆','卷軸狐狸','古城石像'][tier];
+ $('enemy').textContent=review?'🧚':boss?'🐉':['🟢','🦊','🗿'][tier];show('game');draw();
+}
+function draw(){
+ let s=session,q=s.questions[s.index];s.answered=false;stepFun();$('storyline').textContent=(s.review?'📖 找回之前遺失的文字':s.boss?'🐉 龍王的護盾需要連續完成所有題目':STORIES[s.tier][s.index%3])+'｜'+(s.tier===0?'史萊姆：答對即可施法':s.tier===1?'狐狸：小心混淆字音':'石像：破解文字封印');
+ $('roundText').textContent=`第 ${s.index+1} / ${s.questions.length} 題`;
+ $('hpText').textContent=`HP ${s.questions.length-s.correct} / ${s.questions.length}`;
+ $('hpBar').style.width=(100*(s.questions.length-s.correct)/s.questions.length)+'%';
+ $('question').textContent=q.prompt||q.q;
+ $('qtype').textContent=q.t==='sound'?'🔤 看國字，在白板上手寫注音':'✏️ 看注音，在白板上手寫國字';
+ const oldMeta=$('questionMeta');if(oldMeta)oldMeta.remove();const meta=document.createElement('div');meta.id='questionMeta';meta.className='source-line';meta.textContent='📚 '+lessonSource(q)+'｜未經逐題權威校對｜題目 ID：'+q.stableId;if(q.sourceUrl){const link=document.createElement('a');link.href=q.sourceUrl;link.target='_blank';link.rel='noopener noreferrer';link.textContent=' 查看來源';meta.append(link)}$('qtype').after(meta);
+ const oldVariant=$('variantText');if(oldVariant)oldVariant.remove();const variant=document.createElement('div');variant.id='variantText';variant.className='quest-variant';variant.textContent=['🌟 魔法護盾：寫出正確答案','🗝️ 寶箱密碼：破解這個字','🛡️ 守護夥伴：幫忙寫對'][s.index%3];$('question').before(variant);
+ $('feedback').classList.add('hidden');$('next').classList.add('hidden');
+ const area=$('answers');area.replaceChildren();let attempts=0,assisted=false,missRecorded=false;
+ const note=document.createElement('div');note.className='write-note';note.textContent='只寫題目指定的一個國字或一個注音，不必寫完整四字詞語。聲調請寫清楚。';area.append(note);const power=$('petPower');power.textContent=fun.activePet==='小雞勇者'?'🐥 小雞勇者：每關可看一次提示':fun.activePet==='魔法貓'?'🐱 魔法貓：答錯後提醒你再寫一次':fun.activePet==='狐狸學者'?'🦊 狐狸學者：通關時整理學習重點':fun.activePet==='小龍騎士'?'🐉 小龍騎士：施法動畫加油！':'🐾 可在勇者選單選擇學習夥伴';
+ const canvas=document.createElement('canvas');canvas.className='writing-board';canvas.setAttribute('aria-label','手寫作答白板');area.append(canvas);
+ const ctx=canvas.getContext('2d');let strokes=[],current=null,writing=false;
+ function resize(){let rect=canvas.getBoundingClientRect(),ratio=Math.min(devicePixelRatio||1,3);canvas.width=Math.round(rect.width*ratio);canvas.height=Math.round(rect.height*ratio);ctx.setTransform(ratio,0,0,ratio,0,0);paint()}
+ function paint(){const w=canvas.clientWidth,h=canvas.clientHeight;ctx.clearRect(0,0,w,h);ctx.fillStyle='#fff';ctx.fillRect(0,0,w,h);ctx.strokeStyle='#e4eaf4';ctx.lineWidth=1;ctx.setLineDash([5,5]);ctx.beginPath();ctx.moveTo(0,h/2);ctx.lineTo(w,h/2);ctx.stroke();ctx.setLineDash([]);ctx.strokeStyle='#182c49';ctx.fillStyle='#182c49';ctx.lineWidth=5;ctx.lineCap='round';ctx.lineJoin='round';for(const stroke of strokes){if(!stroke.length)continue;ctx.beginPath();ctx.moveTo(stroke[0].x,stroke[0].y);for(const pt of stroke.slice(1))ctx.lineTo(pt.x,pt.y);if(stroke.length===1){ctx.arc(stroke[0].x,stroke[0].y,2.5,0,Math.PI*2);ctx.fill()}else ctx.stroke()}}
+ function point(e){const r=canvas.getBoundingClientRect();return{x:e.clientX-r.left,y:e.clientY-r.top}}
+ canvas.addEventListener('pointerdown',e=>{if(s.answered)return;e.preventDefault();canvas.setPointerCapture(e.pointerId);current=[point(e)];strokes.push(current);writing=true;paint()});
+ canvas.addEventListener('pointermove',e=>{if(!writing||!current)return;e.preventDefault();current.push(point(e));paint()});
+ const stop=()=>{writing=false;current=null};canvas.addEventListener('pointerup',stop);canvas.addEventListener('pointercancel',stop);
+ const tools=document.createElement('div');tools.className='write-tools';
+ for(const [label,action] of [['↶ 撤銷一筆',()=>strokes.pop()],['🧽 全部重寫',()=>strokes=[]]]){const btn=document.createElement('button');btn.textContent=label;btn.onclick=()=>{action();paint()};tools.append(btn)}area.append(tools);
+ const submit=document.createElement('button');submit.className='primary';submit.textContent='✍️ 我寫好了！';
+ const status=document.createElement('p');status.className='write-note';status.setAttribute('role','status');status.textContent='正在檢查本機瀏覽器的手寫辨識支援…';area.append(status);
+ let recognizer=null,ready=false;
+ (async()=>{try{
+   if(typeof navigator.queryHandwritingRecognizer!=='function'||typeof navigator.createHandwritingRecognizer!=='function')throw Error('這個瀏覽器沒有提供手寫辨識介面');
+   const support=await navigator.queryHandwritingRecognizer({languages:['zh-Hant']});
+   if(!support)throw Error('裝置沒有繁體中文手寫辨識模型');
+   recognizer=await navigator.createHandwritingRecognizer({languages:['zh-Hant']});ready=true;
+   status.textContent='✅ 已啟用裝置手寫辨識；寫完即可自動批改。';
+ }catch(err){status.textContent='🖍️ 本機無法自動辨識。寫完可對照答案自行確認；不計入已驗證學習成績。';}})();
+ submit.onclick=async()=>{
+   if(!strokes.length){alert('請先在白板上寫出答案。');return}
+   if(s.answered||session!==s)return;
+   submit.disabled=true;
+   const fb=$('feedback');fb.replaceChildren();fb.classList.remove('hidden');
+   const expected=q.t==='sound'?q.zhuyin:q.word;
+   if(!ready){selfReview(q,expected,fb,submit,()=>retryWriting(),()=>assisted);return}
+   const msg=document.createElement('p');msg.textContent='正在辨識筆跡…';fb.append(msg);
+   try{
+     const drawing=recognizer.startDrawing();
+     const rect=canvas.getBoundingClientRect();
+     for(const stroke of strokes){
+       const segment=drawing.addStroke();
+       for(const pt of stroke)segment.addPoint({x:pt.x,y:pt.y,t:0});
+       segment.finish();
+     }
+     const predictions=await drawing.getPrediction();if(session!==s||s.answered)return;
+     const texts=(predictions||[]).map(x=>typeof x==='string'?x:x.text).filter(Boolean);
+     if(!texts.length)throw Error('未能辨識出文字');
+     const predicted=texts[0];
+     const ok=texts.some(t=>normalizeAnswer(t,q.t)===normalizeAnswer(expected,q.t));
+     msg.textContent='辨識結果：'+predicted+(ok?'。答對了！':'。還沒寫對，看看提示再試一次。');
+     if(ok){markHandwriting(q,true,false,assisted)}else{missRecorded=true;recordAttempt(q,'miss',false);showLearning(q,expected,fb,()=>retryWriting());}
+   }catch(err){if(session!==s||s.answered)return;msg.textContent='辨識暫時失敗：'+(err.message||'未知原因')+'。請對照答案自行確認。';selfReview(q,expected,fb,submit,()=>retryWriting(),()=>assisted)}
+ };
+ function retryWriting(){attempts++;assisted=true;strokes=[];paint();fbReset();submit.disabled=false;status.textContent='💡 看完答案後，請自己再寫一次。這題會標記為提示後完成。';}
+ function fbReset(){$('feedback').replaceChildren();$('feedback').classList.add('hidden')}
+ area.append(submit);
+ if(fun.activePet==='小雞勇者'&&!s.petHintUsed){const petBtn=document.createElement('button');petBtn.className='secondary';petBtn.textContent='🐥 小雞提示（本關一次）';petBtn.onclick=()=>{if(s.answered)return;s.petHintUsed=true;assisted=true;recordAttempt(q,'miss',false);showLearning(q,q.t==='sound'?q.zhuyin:q.word,$('feedback'),()=>retryWriting());$('feedback').classList.remove('hidden');petBtn.remove()};area.append(petBtn)}
+ requestAnimationFrame(resize);
+}
+function showLearning(q,expected,fb,retry){
+ const card=document.createElement('div');card.className='learning-card';
+ const heading=document.createElement('div');heading.textContent='💡 沒關係！先學會，再打敗怪獸';card.append(heading);
+ const ans=document.createElement('b');ans.textContent='正確答案：'+expected;card.append(ans);
+ const explain=document.createElement('p');explain.textContent=(q.e||('完整詞語：'+q.term+'。'))+'｜'+lessonSource(q);card.append(explain);
+ const guide=document.createElement('p');guide.textContent=q.t==='sound'?'請看清楚注音符號與聲調，再自己寫一次。':'請看清楚這個字的部件和位置，再自己寫一次。';card.append(guide);
+ const btn=document.createElement('button');btn.textContent='✍️ 我學會了，再寫一次';btn.onclick=()=>{card.remove();retry()};card.append(btn);fb.append(card);
+}
+function selfReview(q,expected,fb,submit,retry,getAssisted=()=>false){
+ const card=document.createElement('div');card.className='learning-card';
+ const tip=document.createElement('p');tip.textContent='對照答案：'+expected+'。'+(q.e||'')+'｜這是自行核對，並非電腦辨識。';card.append(tip);
+ const row=document.createElement('div');row.className='write-tools';
+ const good=document.createElement('button');good.textContent='🖍️ 我自行核對相同（未驗證）';
+ const bad=document.createElement('button');bad.textContent='💡 我需要提示';
+ good.onclick=()=>{card.remove();session.unscored++;markHandwriting(q,true,true,getAssisted())};
+ bad.onclick=()=>{card.remove();recordAttempt(q,'miss',false);showLearning(q,expected,fb,()=>{retry();const n=$('answers').querySelector('.write-note');if(n)n.textContent='提示後練習：'+expected+'。請重新手寫。';});};
+ row.append(good,bad);card.append(row);fb.append(card);submit.disabled=true;
+}
+function markHandwriting(q,ok,selfRated=false,assisted=false){
+ const s=session;if(s.answered)return;s.answered=true;state.total++;
+ const independent=ok&&!assisted&&!selfRated;
+ if(independent){v41.verifiedAttempts++;v41.verifiedCorrect++;v41.verifiedStreak++;}
+ else{v41.verifiedStreak=0;if(assisted)v41.assistedAttempts++;else if(selfRated)v41.selfAttempts++;}
+ saveV41();
+ if(ok){s.correct++;s.streak++;state.best=Math.max(state.best,s.streak);if(assisted)s.assisted++;else if(!selfRated)s.independent++;const exp=assisted?3:selfRated?5:10,coins=assisted?1:selfRated?2:5;state.exp+=exp;state.coins+=coins;s.earnedExp+=exp;s.earnedCoins+=coins;recordAttempt(q,assisted?'assisted':selfRated?'self':'correct',independent)}else{s.streak=0;recordAttempt(q,'miss',false)}
+ save();stats();renderShop();battleFun(ok);
+ const fb=$('feedback');const status=document.createElement('p');status.textContent=assisted?'🌱 提示後完成！+3 EXP、+1 金幣。下次獨立答對會更棒！':selfRated?'🖍️ 自評完成！+5 EXP、+2 金幣（非自動辨識）':ok?'✨ 獨立辨識答對！+10 EXP、+5 金幣':'💡 加入複習清單';fb.append(status);
+ $('hpText').textContent=`HP ${s.questions.length-s.correct} / ${s.questions.length}`;$('hpBar').style.width=(100*(s.questions.length-s.correct)/s.questions.length)+'%';$('next').textContent=s.index===s.questions.length-1?'查看戰鬥結果 🏆':'下一題 ➜';$('next').classList.remove('hidden');
+}
+function finish(){let s=session;let won=s.boss?s.correct===s.questions.length:s.correct>=Math.ceil(s.questions.length*.6);if(won&&!s.review){state.clears[s.tier]=(state.clears[s.tier]||0)+1;if(s.tier===state.unlocked&&s.tier<2&&v41.verifiedStreak>=6&&s.independent>=2)state.unlocked++; const bonus=s.independent===s.questions.length?20:Math.min(10,s.independent*5);state.exp+=bonus;state.coins+=bonus;s.earnedExp+=bonus;s.earnedCoins+=bonus}save();render();finishFun(won);$('finishEmoji').textContent=won?'🏆':'💪';$('finishTitle').textContent=won?'挑戰成功！':'繼續加油！';$('finishDesc').textContent=`答對 ${s.correct} / ${s.questions.length} 題${s.unscored?'（'+s.unscored+' 題自評）':''}；提示後完成 ${s.assisted} 題、獨立辨識答對 ${s.independent} 題。${won?'成功守護文字王國！':(s.boss?'魔王關必須全對才能通關，再挑戰一次！':'答對至少六成即可通關，再試一次！')}`;$('finishReward').textContent=`本場答題獲得 ${s.earnedExp} EXP、${s.earnedCoins} 金幣${won&&!s.review?'（通關額外獎勵只依已驗證表現計算）':''}`;if(fun.activePet==='狐狸學者')$('finishDesc').textContent+=' 🦊 學者提醒：明天再練一次今天寫錯的字，記得更牢。';show('finish')}
+
+const FUNKEY='ziyin_zixing_fun_v25';
+let fun={stars:0,wins:0,days:{},pets:[],owned:['starter'],equipped:'starter',activePet:null};
+try{const f=JSON.parse(localStorage.getItem(FUNKEY));if(f&&typeof f==='object')fun={...fun,...f,days:f.days||{},pets:Array.isArray(f.pets)?f.pets:[],owned:Array.isArray(f.owned)?f.owned:['starter'],equipped:typeof f.equipped==='string'?f.equipped:'starter',activePet:typeof f.activePet==='string'?f.activePet:null}}catch(e){}
+const PETS=[['🐣','小雞勇者',1],['🐱','魔法貓',3],['🦊','狐狸學者',6],['🐉','小龍騎士',12]];
+const OUTFITS=[{id:'starter',icon:'🧙',name:'見習魔法師',cost:0},{id:'hat',icon:'🎩',name:'星光魔法帽',cost:30},{id:'knight',icon:'🛡️',name:'勇者騎士',cost:65},{id:'prince',icon:'👑',name:'文字王子',cost:100},{id:'fairy',icon:'🧚',name:'森林精靈',cost:140},{id:'dragon',icon:'🐲',name:'龍之守護者',cost:200}];
+function renderShop(){
+ $('shopBalance').textContent='🪙 '+state.coins;
+ const chosen=OUTFITS.find(x=>x.id===fun.equipped)||OUTFITS[0];
+ const activePet=PETS.find(x=>x[1]===fun.activePet&&fun.wins>=x[2]);
+ $('closet').textContent=chosen.icon+' '+chosen.name+(activePet?' ＋ '+activePet[0]+' '+activePet[1]:'')+'｜我的冒險造型';
+ const grid=$('shopGrid');grid.replaceChildren();
+ for(const item of OUTFITS){const card=document.createElement('div');card.className='shop-item'+(fun.equipped===item.id?' equipped':'');const pic=document.createElement('div');pic.className='shop-icon';pic.textContent=item.icon;const name=document.createElement('b');name.textContent=item.name;const btn=document.createElement('button');const owned=fun.owned.includes(item.id);btn.textContent=fun.equipped===item.id?'✅ 穿戴中':owned?'換上造型':'🪙 '+item.cost+' 購買';btn.disabled=fun.equipped===item.id||(!owned&&state.coins<item.cost);btn.onclick=()=>{if(!fun.owned.includes(item.id)){if(state.coins<item.cost)return;state.coins=Math.max(0,state.coins-item.cost);fun.owned.push(item.id);save();stats()}fun.equipped=item.id;saveFun();renderShop()};card.append(pic,name,btn);grid.append(card)}
+ const pets=$('petGrid');pets.replaceChildren();for(const p of PETS){const card=document.createElement('div');card.className='shop-item'+(fun.activePet===p[1]?' equipped':'');const pic=document.createElement('div');pic.className='shop-icon';pic.textContent=p[0];const name=document.createElement('b');name.textContent=p[1];const btn=document.createElement('button');const unlocked=fun.wins>=p[2];btn.textContent=!unlocked?'🔒 勝利 '+p[2]+' 場解鎖':fun.activePet===p[1]?'✅ 同行中':'一起冒險';btn.disabled=!unlocked||fun.activePet===p[1];btn.onclick=()=>{fun.activePet=p[1];saveFun();renderShop();renderFun()};card.append(pic,name,btn);pets.append(card)}
+}
+
+function saveFun(){try{localStorage.setItem(FUNKEY,JSON.stringify(fun))}catch(e){}}
+function todayKey(){const d=new Date();return [d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-')}
+function renderFun(){
+ const map=$('worldMap');map.replaceChildren();['🌳 字音森林','🏡 成語小鎮','🏰 困難古城'].forEach((n,i)=>{let d=document.createElement('div');d.className='worldstop '+(i>state.unlocked?'locked':diff===i?'current':'');let em=document.createElement('strong');em.textContent=['🌳','🏡','🏰'][i];d.append(em,document.createTextNode(n+(i>state.unlocked?' 🔒':' ✓')));map.append(d)});
+ const unlocked=PETS.filter(p=>fun.wins>=p[2]);const active=unlocked.find(p=>p[1]===fun.activePet)||unlocked.at(-1);$('buddyIcon').textContent=active?active[0]:'🥚';$('buddyName').textContent=active?active[1]:'神祕夥伴蛋';$('buddyHint').textContent=active?'已收集 '+unlocked.length+' / '+PETS.length+' 隻夥伴':'首次挑戰成功就能孵出小雞勇者';
+ renderShop();const today=fun.days[todayKey()]||0;$('dailyQuest').textContent='🎯 今日任務：完成 3 場挑戰 '+Math.min(today,3)+'/3'+(today>=3?' 🎉 已達成！':'（每日重新計算）');
+}
+$('buddyBtn').onclick=()=>alert('🐾 夥伴圖鑑\n'+PETS.map(p=>(fun.wins>=p[2]?'✅ ':'🔒 ')+p[0]+' '+p[1]+'｜累積 '+p[2]+' 場勝利').join('\n'));
+function battleFun(ok){const s=session;$('comboLabel').textContent='✨ 連擊 '+s.streak;if(ok){$('enemy').classList.remove('bounce');void $('enemy').offsetWidth;$('enemy').classList.add('bounce');$('battleBuddy').textContent=s.streak>=3?'⚡ 超級連擊！':'🪄 魔法攻擊！'}else{$('battleBuddy').textContent='🛡️ 勇者繼續加油！'} }
+function stepFun(){const el=$('stepDots');el.replaceChildren();session.questions.forEach((q,i)=>{const dot=document.createElement('span');dot.className=i<session.index?'done':i===session.index?'now':'';el.append(dot)});$('comboLabel').textContent='✨ 連擊 '+session.streak;$('battleBuddy').textContent=(OUTFITS.find(x=>x.id===fun.equipped)||OUTFITS[0]).icon+' 小勇者'}
+function finishFun(won){let reward='💌 今天又認識了更多文字！';if(won&&!session.review){fun.wins++;fun.stars+=3;const day=todayKey();fun.days[day]=(fun.days[day]||0)+1;const gained=PETS.find(p=>p[2]===fun.wins);reward=gained?'🎊 新夥伴加入：'+gained[0]+' '+gained[1]+'！':'🎁 寶箱開啟！獲得 ⭐ 3 顆冒險星星';if(fun.days[day]===3){fun.stars+=5;reward+='｜🎯 每日任務完成，額外 ⭐ 5 顆！'}saveFun()}$('lootReward').textContent=reward;renderFun()}
+
+$('start').onclick=()=>start();$('competition').onclick=()=>start(false,true);$('bossChallenge').onclick=()=>start(false,true,true);$('review').onclick=()=>start(true);$('next').onclick=()=>{if(!session.answered)return;session.index++;session.index>=session.questions.length?finish():draw()};$('exit').onclick=()=>{session=null;render();show('home')};$('again').onclick=()=>start(false,!!session?.competition,!!session?.boss);$('back').onclick=()=>{render();show('home')};render();updateCompetition();renderFun();
+</script></body></html>
